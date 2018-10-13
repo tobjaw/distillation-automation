@@ -1,24 +1,42 @@
+/**
+ * @file  main.c
+ */
 #include "main.h"
 #include "api.h"
 
-int main () {
+const int TEMPERATURE_MIN = 45;
+const int TEMPERATURE_MAX = 60;
 
+int main () {
   API api;
-  int temp;
+  int temperature;
   HeaterStatus heater_status;
 
+
+  /* Interface to Peripherals
+   * see "api.h" for documentation
+   */
   api = initAPI();
 
+
+  /* Main Loop
+   *
+   * Check current temperature and
+   * switch heater power to stay within
+   * TEMPERATURE_MIN and TEMPERATURE_MAX.
+   */
   while (1) {
-    temp = api.getTemperature();
+    // get current states
+    temperature = api.getTemperature();
     heater_status = api.getHeaterStatus();
 
-    printf("current temperature: %d\n", temp);
+    printf("current temperature: %d\n", temperature);
 
-    if (temp > 60 && heater_status == HEATER_ON) {
+    // controller logic
+    if (temperature > TEMPERATURE_MAX && heater_status == HEATER_ON) {
       printf("temperature high, turning off heater\n");
       api.setHeaterStatus(HEATER_OFF);
-    } else if (temp < 45 && heater_status == HEATER_OFF) {
+    } else if (temperature < TEMPERATURE_MIN && heater_status == HEATER_OFF) {
       printf("temperature low, turning on heater\n");
       api.setHeaterStatus(HEATER_ON);
     }
