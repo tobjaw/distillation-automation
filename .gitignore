@@ -1,2 +1,4 @@
+.cquery_cached_index
 compile_commands.json
 bin
+build
