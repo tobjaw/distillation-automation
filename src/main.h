@@ -2,7 +2,6 @@
  * @file  main.h
  */
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h> // this library may not exist on our target architecture
 
 
