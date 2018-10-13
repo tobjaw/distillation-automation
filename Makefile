@@ -1,5 +1,5 @@
 build: src/*.c src/*.h
-	cc -o bin/main src/*.c
+	mkdir -p bin; cc -o bin/main src/*.c
 
 run: bin/main
 	bin/main
