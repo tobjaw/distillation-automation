@@ -1,0 +1,11 @@
+env:
+  DIR_TOOLS: "tools"
+steps:
+- command:
+    - "$${DIR_TOOLS}/cmake/build.sh"
+    - "$${DIR_TOOLS}/cmake/run.sh"
+    - "$${DIR_TOOLS}/clang-format/build.sh"
+    - "$${DIR_TOOLS}/clang-format/run.sh"
+  label: ":gnu: format"
+  agents:
+    docker: "true"
