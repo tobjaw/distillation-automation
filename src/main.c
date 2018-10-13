@@ -7,7 +7,7 @@
 const int TEMPERATURE_MIN = 45;
 const int TEMPERATURE_MAX = 60;
 
-int main () {
+int main() {
   API api;
   int temperature;
   HeaterStatus heater_status;

@@ -30,9 +30,7 @@ int getTemperatureVirtual() {
 /**
  * read power state
  */
-int getHeaterStatusVirtual() {
-  return heater_status_virtual;
-}
+int getHeaterStatusVirtual() { return heater_status_virtual; }
 
 
 /**

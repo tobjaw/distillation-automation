@@ -9,12 +9,10 @@
 /**
  * Possible states of the heater unit.
  */
-typedef enum
-  {
-   HEATER_ON, /**< Heater is switched on. */
-   HEATER_OFF /**< Heater is switched off. */
-  }
-  HeaterStatus;
+typedef enum {
+  HEATER_ON, /**< Heater is switched on. */
+  HEATER_OFF /**< Heater is switched off. */
+} HeaterStatus;
 
 
 /**
