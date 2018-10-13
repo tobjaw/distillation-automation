@@ -7,5 +7,5 @@ run: bin/main
 dev: src/*.c src/*.h
 	make build && make run
 
-docs: src/*.c src/*.h Doxyfile
-	doxygen
+docs: src/*.c src/*.h docs/Doxyfile
+	doxygen docs/Doxyfile
