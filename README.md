@@ -6,6 +6,6 @@ Software for our distillation automation project.
 * `make`: build the executable
 * `make run`: run the executale
 * `make docs`: generate documentation  
-  Requires doxygen to be installed and on `$PATH`.
+  Requires Docker to be installed and on `$PATH`.
 * `make format`: fix formatting  
   Requires Docker to be installed and on `$PATH`.
