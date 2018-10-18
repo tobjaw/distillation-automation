@@ -8,7 +8,7 @@ dev: src/*.c src/*.h
 	make build && make run
 
 docs: src/*.c src/*.h docs/Doxyfile
-	doxygen docs/Doxyfile
+	tools/doxygen/run-local.sh
 
 cmake: *
 	test ! -f compile_commands.json && tools/cmake/build.sh && tools/cmake/run-local.sh || exit 0
