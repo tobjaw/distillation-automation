@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.9.5)
 project (distillation-automation)
 
 include_directories("${PROJECT_SOURCE_DIR}/src")

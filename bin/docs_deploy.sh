@@ -2,6 +2,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+if [ -z ${CI+x} ]; then
+    echo "Can only be run on CI."
+    exit 1
+fi
 
 echo "+++ trying to deploy to target"
 ssh-keyscan -t rsa ${DOCS_DEPLOY_HOST} 2>&1 >> ~/.ssh/known_hosts && \
