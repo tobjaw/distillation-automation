@@ -1,8 +1,10 @@
 /**
  * @file  main.c
  */
+#include <stdio.h>
 #include "main.h"
 #include "api.h"
+#include "compat.h"
 
 const int TEMPERATURE_MIN = 45;
 const int TEMPERATURE_MAX = 60;
@@ -12,6 +14,7 @@ int main() {
   int temperature;
   HeaterStatus heater_status;
 
+  _stdout_setup();
 
   /* Interface to Peripherals
    * see "api.h" for documentation
@@ -25,6 +28,7 @@ int main() {
    * switch heater power to stay within
    * TEMPERATURE_MIN and TEMPERATURE_MAX.
    */
+
   while (1) {
     // get current states
     temperature = api.getTemperature();
@@ -41,9 +45,8 @@ int main() {
       api.setHeaterStatus(HEATER_ON);
     }
 
-    sleep(1);
+    _sleep(1000);
   }
-
 
   return 0;
 }
