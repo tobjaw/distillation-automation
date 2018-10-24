@@ -1,18 +1,32 @@
 env:
-  DIR_TOOLS: "tools"
+  DIR_BIN: "bin"
 steps:
 
 - command:
-    - "$${DIR_TOOLS}/cmake/build.sh"
-    - "$${DIR_TOOLS}/cmake/run.sh"
-    - "$${DIR_TOOLS}/clang-format/build.sh"
-    - "$${DIR_TOOLS}/clang-format/run.sh"
+    - "$${DIR_BIN}/format.sh"
   label: ":gnu: format"
   agents:
     docker: "true"
 
 - command:
-    - "$${DIR_TOOLS}/doxygen/run.sh"
+    - "$${DIR_BIN}/build.sh"
+  label: ":gnu: build"
+  artifact_paths:
+    - "build/main"
+  agents:
+    docker: "true"
+
+- command:
+    - "$${DIR_BIN}/build_avr.sh"
+  label: ":gnu: build_avr"
+  artifact_paths:
+    - "build/main.elf"
+    - "build/main.hex"
+  agents:
+    docker: "true"
+
+- command:
+    - "$${DIR_BIN}/docs_build.sh"
   label: ":md: docs build"
   artifact_paths:
     - "docs/html/**/*"
@@ -23,7 +37,7 @@ steps:
 
 - command:
     - "buildkite-agent artifact download docs/html/* ."
-    - "$${DIR_TOOLS}/doxygen/deploy.sh"
+    - "$${DIR_BIN}/docs_deploy.sh"
   label: ":nginx: docs publish"
   branches: "master"
   agents:
