@@ -14,6 +14,7 @@ int main() {
   int temperature;
   HeaterStatus heater_status;
 
+  _clock_setup();
   _stdout_setup();
 
   /* Interface to Peripherals
