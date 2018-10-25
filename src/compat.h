@@ -51,4 +51,7 @@ void _clock_setup() {
 #ifdef __AVR__
 ISR(TIMER1_COMPA_vect) { elapsedTime += 100; }
 #endif //__AVR__
+
+#define _log(f_, ...) printf("[%08lu] " f_ "\n", elapsedTime, ##__VA_ARGS__)
+
 #endif /* UTIL_H */
