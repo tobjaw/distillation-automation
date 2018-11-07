@@ -1,7 +1,7 @@
 #ifdef __AVR__
 #include <stdio.h>
 #include <avr/io.h>
-#include "spi.h"
+#include "SPI.h"
 #include "errors.h"
 
 char SPI_init() {

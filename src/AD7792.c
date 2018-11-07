@@ -167,7 +167,7 @@ float AD7792_getTemperature() {
   y1 = 81.4;
   x2 = 32440.0;
   y2 = 100.9;
-  reading = y1 + ((y2 - y1) / (x2-x1)) * (temp - x1);
+  reading = y1 + ((y2 - y1) / (x2 - x1)) * (temp - x1);
   return reading;
 }
 #endif //__AVR__
