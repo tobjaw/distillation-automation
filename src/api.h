@@ -23,12 +23,19 @@ typedef enum {
  */
 typedef struct {
   /**
+   * Init call, used for setting up devices.
+   *
+   * @return  0 on success.
+   */
+  unsigned char (*init)(void);
+
+  /**
    * Get the current temperature.
    *
    * @return  Return the current temperature in degrees celsius
-   *          or -1 on error.
+   *          or 0 on error.
    */
-  int (*getTemperature)(void);
+  unsigned int (*getTemperature)(void);
 
   /**
    * Get the current heater status.
@@ -47,12 +54,12 @@ typedef struct {
 
 
 /**
- * Init the API
+ * Create a new API
  *
  * Uses either virtual or physical implementations
  * behind a common Interface.
  */
-API initAPI();
+API newAPI();
 
 
 #endif /* API_H */
