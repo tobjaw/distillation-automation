@@ -14,19 +14,22 @@ int main() {
   API api;
   float temperature;
   unsigned char status;
-  /* HeaterStatus heater_status; */
 
   _clock_setup();
   _stdout_setup();
 
-  _log("main()");
+  if (LOG_LEVEL >= LOG_LEVEL_INFO) {
+    _log("main()");
+  }
 
   /* Interface to Peripherals
    * see "api.h" for documentation
    */
   api = newAPI();
   status = api.init();
-  _log("api.init()=%d", status);
+  if (LOG_LEVEL >= LOG_LEVEL_INFO) {
+    _log("api.init()=%d", status);
+  }
 
   if (status) {
     switch (status) {
@@ -46,9 +49,6 @@ int main() {
     };
   }
 
-  /* while (1) {}; */
-
-
   /* Main Loop
    *
    * Check current temperature and
@@ -59,23 +59,8 @@ int main() {
   while (1) {
     // get current states
     temperature = api.getTemperature();
-    /* heater_status = api.getHeaterStatus(); */
 
-    /* _log("current temperature: %d", temperature); */
     _log("%f", temperature);
-
-
-    /* // controller logic */
-    /* if (temperature > TEMPERATURE_MAX && heater_status == HEATER_ON) { */
-    /*   _logic("temperature high, turning off heater"); */
-    /*   api.setHeaterStatus(HEATER_OFF); */
-    /* } else if (temperature < TEMPERATURE_MIN && heater_status == HEATER_OFF)
-     * { */
-    /*   _log("temperature low, turning on heater"); */
-    /*   api.setHeaterStatus(HEATER_ON); */
-    /* } */
-
-    _sleep(5000);
   }
 
   return 0;

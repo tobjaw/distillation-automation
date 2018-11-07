@@ -7,9 +7,10 @@
 
 #define LOG_INDENT "           "
 
-#define LOG_LEVEL_WARNING 0
-#define LOG_LEVEL_INFO 1
-#define LOG_LEVEL_DEBUG 2
-#define LOG_LEVEL LOG_LEVEL_INFO
+#define LOG_LEVEL_CSV 0
+#define LOG_LEVEL_WARNING 1
+#define LOG_LEVEL_INFO 2
+#define LOG_LEVEL_DEBUG 3
+#define LOG_LEVEL LOG_LEVEL_CSV
 
 #endif /* ERRORS_H */
