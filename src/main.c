@@ -14,6 +14,7 @@ int main() {
   int temperature;
   HeaterStatus heater_status;
 
+  _clock_setup();
   _stdout_setup();
 
   /* Interface to Peripherals
@@ -34,14 +35,14 @@ int main() {
     temperature = api.getTemperature();
     heater_status = api.getHeaterStatus();
 
-    printf("current temperature: %d\n", temperature);
+    _log("current temperature: %d", temperature);
 
     // controller logic
     if (temperature > TEMPERATURE_MAX && heater_status == HEATER_ON) {
-      printf("temperature high, turning off heater\n");
+      _log("temperature high, turning off heater");
       api.setHeaterStatus(HEATER_OFF);
     } else if (temperature < TEMPERATURE_MIN && heater_status == HEATER_OFF) {
-      printf("temperature low, turning on heater\n");
+      _log("temperature low, turning on heater");
       api.setHeaterStatus(HEATER_ON);
     }
 
