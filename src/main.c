@@ -1,6 +1,7 @@
 /**
  * @file  main.c
  */
+
 #include <stdio.h>
 #include "main.h"
 #include "api.h"
@@ -61,6 +62,7 @@ int main() {
     temperature = api.getTemperature();
 
     _log("%f", temperature);
+    _sleep(500);
   }
 
   return 0;

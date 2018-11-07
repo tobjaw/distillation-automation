@@ -2,4 +2,5 @@
 compile_commands.json
 build
 Debug
+bin
 .vs

@@ -30,16 +30,23 @@ unsigned char initPhysical() {
 }
 
 float getTemperaturePhysical() { return AD7792_getTemperature(); }
+
+/**
+ * Set the heater status physically.
+ * PL5
+ *
+ * @return  Return the new heater status or -1 on error.
+ */
 int setHeaterStatusPhysical(HeaterStatus power) {
 
-  // PA0 := output
-  DDRA |= (1 << PA0);
+  // PL5 := output
+  DDRL |= (1 << PL5);
 
   if (power == HEATER_ON) {
-    PORTA |= (1 << PA0); // PA0 High
+    PORTL |= (1 << PL5); // PL5 High
     heater_status = HEATER_ON;
   } else if (power == HEATER_OFF) {
-    PORTA &= ~(1 << PA0); // PA0 Low
+    PORTL &= ~(1 << PL5); // PL5 Low
     heater_status = HEATER_OFF;
   } else {
     return -1;

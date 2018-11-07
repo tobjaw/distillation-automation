@@ -163,10 +163,10 @@ float AD7792_getTemperature() {
   temp = AD7792_read(AD7792_COMM_ADDR(AD7792_REG_DATA), 2);
 
   /* linear interpolation from dummy values */
-  x1 = 30637.0;
-  y1 = 81.4;
-  x2 = 32440.0;
-  y2 = 100.9;
+  x1 = 23325.0;
+  y1 = 0;
+  x2 = 30637.0;
+  y2 = 81.4;
   reading = y1 + ((y2 - y1) / (x2 - x1)) * (temp - x1);
   return reading;
 }
