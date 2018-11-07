@@ -49,8 +49,8 @@ cmake_cmds() {
 
     cd ${DIR_BUILD_DOCKER} && \
     cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
-
-    cp ${DIR_BUILD_DOCKER}/compile_commands.json ..
+    
+    cp compile_commands.json ..
 }
 
 run() {
@@ -75,6 +75,8 @@ build_avr() {
 
     echo "+++ Link object files into .elf..."
     avr_gcc_invocation \
+        -Wl,-u,vfprintf \
+        -lprintf_flt \
         "${DIR_BUILD_DOCKER}/*.o" \
         -o "${DIR_BUILD_DOCKER}/${FILE_BUILD_OUT}.elf"
 

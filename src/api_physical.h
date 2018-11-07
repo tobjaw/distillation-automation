@@ -4,6 +4,7 @@
 #include "api.h"
 
 
+unsigned char initPhysical();
 int getHeaterStatusPhysical();
 int setHeaterStatusPhysical(HeaterStatus power);
-int getTemperaturePhysical();
+float getTemperaturePhysical();

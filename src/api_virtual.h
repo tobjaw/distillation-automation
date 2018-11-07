@@ -3,7 +3,7 @@
  */
 #include "api.h"
 
-
+unsigned char initVirtual();
 int getHeaterStatusVirtual();
 int setHeaterStatusVirtual(HeaterStatus power);
-int getTemperatureVirtual();
+float getTemperatureVirtual();

@@ -9,14 +9,27 @@
 #ifdef __AVR__
 #include <avr/io.h>
 #include "api_physical.h"
+#include "SPI.h"
+#include "AD7792.h"
+#include "errors.h"
 
 
 int heater_status = HEATER_OFF;
 
-int getTemperaturePhysical() {
-  // TODO: implement
-  return -1;
+unsigned char initPhysical() {
+  if (SPI_init()) {
+    return ERROR_SPI_INIT;
+  }
+
+  unsigned char AD7792_status = AD7792_init();
+  if (AD7792_status) {
+    return AD7792_status;
+  }
+
+  return 0;
 }
+
+float getTemperaturePhysical() { return AD7792_getTemperature(); }
 int setHeaterStatusPhysical(HeaterStatus power) {
 
   // PA0 := output

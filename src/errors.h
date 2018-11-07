@@ -1,0 +1,16 @@
+#ifndef ERRORS_H
+#define ERRORS_H
+
+#define ERROR_SPI_INIT 1
+#define ERROR_AD7792_CONNECTION 2
+#define ERROR_AD7792_CONFIGURATION 3
+
+#define LOG_INDENT "           "
+
+#define LOG_LEVEL_CSV 0
+#define LOG_LEVEL_WARNING 1
+#define LOG_LEVEL_INFO 2
+#define LOG_LEVEL_DEBUG 3
+#define LOG_LEVEL LOG_LEVEL_CSV
+
+#endif /* ERRORS_H */
