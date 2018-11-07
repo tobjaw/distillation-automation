@@ -75,6 +75,8 @@ build_avr() {
 
     echo "+++ Link object files into .elf..."
     avr_gcc_invocation \
+        -Wl,-u,vfprintf \
+        -lprintf_flt \
         "${DIR_BUILD_DOCKER}/*.o" \
         -o "${DIR_BUILD_DOCKER}/${FILE_BUILD_OUT}.elf"
 
