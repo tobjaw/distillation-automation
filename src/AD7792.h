@@ -112,4 +112,4 @@
 
 int AD7792_isConnected(void);
 unsigned char AD7792_init(void);
-unsigned int AD7792_getTemperature(void);
+float AD7792_getTemperature(void);

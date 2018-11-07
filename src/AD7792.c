@@ -146,8 +146,8 @@ unsigned char AD7792_init() {
 }
 
 
-unsigned int AD7792_getTemperature() {
-  unsigned int temp = 0;
+float AD7792_getTemperature() {
+  float temp, reading, x1, y1, x2, y2;
 
   /* perform a single conversion */
   unsigned short mode = 0x00;

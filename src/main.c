@@ -12,7 +12,7 @@ const int TEMPERATURE_MAX = 60;
 
 int main() {
   API api;
-  unsigned int temperature;
+  float temperature;
   unsigned char status;
   /* HeaterStatus heater_status; */
 
@@ -62,7 +62,7 @@ int main() {
     /* heater_status = api.getHeaterStatus(); */
 
     /* _log("current temperature: %d", temperature); */
-    _log("current temperature: %u", temperature);
+    _log("%f", temperature);
 
 
     /* // controller logic */

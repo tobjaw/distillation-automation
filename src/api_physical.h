@@ -7,4 +7,4 @@
 unsigned char initPhysical();
 int getHeaterStatusPhysical();
 int setHeaterStatusPhysical(HeaterStatus power);
-unsigned int getTemperaturePhysical();
+float getTemperaturePhysical();

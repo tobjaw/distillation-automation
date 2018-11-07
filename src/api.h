@@ -35,7 +35,7 @@ typedef struct {
    * @return  Return the current temperature in degrees celsius
    *          or 0 on error.
    */
-  unsigned int (*getTemperature)(void);
+  float (*getTemperature)(void);
 
   /**
    * Get the current heater status.

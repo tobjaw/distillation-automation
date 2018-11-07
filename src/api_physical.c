@@ -29,7 +29,7 @@ unsigned char initPhysical() {
   return 0;
 }
 
-unsigned int getTemperaturePhysical() { return AD7792_getTemperature(); }
+float getTemperaturePhysical() { return AD7792_getTemperature(); }
 int setHeaterStatusPhysical(HeaterStatus power) {
 
   // PA0 := output
