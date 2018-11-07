@@ -1,3 +1,4 @@
+#ifdef __AVR__
 #include <stdio.h>
 #include <util/delay.h>
 
@@ -169,3 +170,4 @@ float AD7792_getTemperature() {
   reading = y1 + ((y2 - y1) / (x2-x1)) * (temp - x1);
   return reading;
 }
+#endif //__AVR__

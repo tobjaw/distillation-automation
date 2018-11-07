@@ -1,3 +1,4 @@
+#ifdef __AVR__
 #include <stdio.h>
 #include <avr/io.h>
 #include "spi.h"
@@ -57,3 +58,4 @@ void SPI_tradeByte(uint8_t byte) {
            LOG_INDENT, BYTE_TO_BINARY(byte), byte, BYTE_TO_BINARY(SPDR), SPDR);
   }
 }
+#endif //__AVR__

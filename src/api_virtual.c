@@ -11,7 +11,7 @@
 int heater_status_virtual = HEATER_ON;
 
 
-int initVirtual() { return 0; }
+unsigned char initVirtual() { return 0; }
 
 /**
  * basic temperature simulation
