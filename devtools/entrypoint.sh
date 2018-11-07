@@ -49,8 +49,8 @@ cmake_cmds() {
 
     cd ${DIR_BUILD_DOCKER} && \
     cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
-
-    cp ${DIR_BUILD_DOCKER}/compile_commands.json ..
+    
+    cp compile_commands.json ..
 }
 
 run() {
