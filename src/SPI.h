@@ -24,6 +24,12 @@
 #define SPI_SS_0_PIN PING
 #define SPI_SS_0_DDR DDRG
 
+// SS 2, da bin SS2 angesprochen wird
+#define SPI_SS_2 PF2
+#define SPI_SS_2_PORT PORTF
+#define SPI_SS_2_PIN PINF
+#define SPI_SS_2_DDR DDRF
+
 #define SPI_MOSI PB2
 #define SPI_MOSI_PORT PORTB
 #define SPI_MOSI_PIN PINB
@@ -44,3 +50,6 @@ void SPI_tradeByte(uint8_t byte);
 
 #define SPI_SLAVE_0_SELECT SPI_SS_0_PORT &= ~(1 << SPI_SS_0)
 #define SPI_SLAVE_0_DESELECT SPI_SS_0_PORT |= (1 << SPI_SS_0)
+
+#define SPI_SLAVE_2_SELECT SPI_SS_2_PORT &= ~(1 << SPI_SS_2)
+#define SPI_SLAVE_2_DESELECT SPI_SS_2_PORT |= (1 << SPI_SS_2)

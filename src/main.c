@@ -13,7 +13,7 @@ const int TEMPERATURE_MAX = 60;
 
 int main() {
   API api;
-  float temperature;
+  float temperature1, temperature2;
   unsigned char status;
 
   _clock_setup();
@@ -37,11 +37,11 @@ int main() {
     case ERROR_SPI_INIT:
       _log("Error: Could not init SPI.");
       break;
-    case ERROR_AD7792_CONNECTION:
-      _log("Error: Could not establish communication with AD7792.");
+    case ERROR_AD7792_SLOT1:
+      _log("Error: AD7792 on SLOT1.");
       break;
-    case ERROR_AD7792_CONFIGURATION:
-      _log("Error: Could not configure AD7792 correctly.");
+    case ERROR_AD7792_SLOT2:
+      _log("Error: AD7792 on SLOT2");
       break;
     default:
       _log("Error.");
@@ -59,10 +59,10 @@ int main() {
 
   while (1) {
     // get current states
-    temperature = api.getTemperature();
+    temperature1 = api.getTemperature(SLOT1);
+    temperature2 = api.getTemperature(SLOT2);
 
-    _log("%f", temperature);
-    _sleep(500);
+    _log("%f,%f", temperature1, temperature2);
   }
 
   return 0;

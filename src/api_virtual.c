@@ -16,7 +16,7 @@ unsigned char initVirtual() { return 0; }
 /**
  * basic temperature simulation
  */
-float getTemperatureVirtual() {
+float getTemperatureVirtual(TempSlot _tempSlot) {
   static int t = 23; /**< starting temperature */
 
   if (heater_status_virtual == HEATER_ON) {

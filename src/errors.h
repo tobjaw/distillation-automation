@@ -5,6 +5,9 @@
 #define ERROR_AD7792_CONNECTION 2
 #define ERROR_AD7792_CONFIGURATION 3
 
+#define ERROR_AD7792_SLOT1 10
+#define ERROR_AD7792_SLOT2 20
+
 #define LOG_INDENT "           "
 
 #define LOG_LEVEL_CSV 0

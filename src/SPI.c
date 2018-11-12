@@ -8,11 +8,13 @@ char SPI_init() {
   // SS Output
   SPI_SS_DDR |= (1 << SPI_SS);
   SPI_SS_0_DDR |= (1 << SPI_SS_0);
+  SPI_SS_2_DDR |= (1 << SPI_SS_2);
 
   // SS Set High
   // (not selected)
   SPI_SS_PORT |= (1 << SPI_SS);
   SPI_SS_0_PORT |= (1 << SPI_SS_0);
+  SPI_SS_2_PORT |= (1 << SPI_SS_2);
 
   // MOSI output
   SPI_MOSI_DDR |= (1 << SPI_MOSI);

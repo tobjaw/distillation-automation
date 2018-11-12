@@ -8,6 +8,7 @@
  */
 #ifdef __AVR__
 #include <avr/io.h>
+#include <stdio.h>
 #include "api_physical.h"
 #include "SPI.h"
 #include "AD7792.h"
@@ -21,15 +22,30 @@ unsigned char initPhysical() {
     return ERROR_SPI_INIT;
   }
 
-  unsigned char AD7792_status = AD7792_init();
+  unsigned char AD7792_status = AD7792_init(SLOT1);
   if (AD7792_status) {
-    return AD7792_status;
+    if (LOG_LEVEL >= LOG_LEVEL_WARNING) {
+      printf("%sinit physical: Error SLOT1, error code: %d", LOG_INDENT,
+             (int)AD7792_status);
+    }
+    return ERROR_AD7792_SLOT1;
+  }
+
+  AD7792_status = AD7792_init(SLOT2);
+  if (AD7792_status) {
+    if (LOG_LEVEL >= LOG_LEVEL_WARNING) {
+      printf("%sinit physical: Error SLOT2, error code: %d", LOG_INDENT,
+             (int)AD7792_status);
+    }
+    return ERROR_AD7792_SLOT2;
   }
 
   return 0;
 }
 
-float getTemperaturePhysical() { return AD7792_getTemperature(); }
+float getTemperaturePhysical(TempSlot _tempSlot) {
+  return AD7792_getTemperature(_tempSlot);
+}
 
 /**
  * Set the heater status physically.
