@@ -27,6 +27,7 @@ void _stdout_setup() {
 #ifdef __AVR__
   uart_init();
   stdout = &uart_output;
+  stdin = &uart_input;
 #endif //__AVR__
 }
 
