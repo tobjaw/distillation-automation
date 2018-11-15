@@ -109,7 +109,8 @@
 
 #define AD7792_STATUS_RDY (1 << 7)
 
+#include "api.h"
 
-int AD7792_isConnected(void);
-unsigned char AD7792_init(void);
-float AD7792_getTemperature(void);
+int AD7792_isConnected(TempSlot _tempSlot);
+unsigned char AD7792_init(TempSlot _tempSlot);
+float AD7792_getTemperature(TempSlot _tempSlot);

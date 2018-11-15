@@ -14,6 +14,8 @@ typedef enum {
   HEATER_OFF /**< Heater is switched off. */
 } HeaterStatus;
 
+typedef enum { SLOT1, SLOT2 } TempSlot;
+
 
 /**
  * API to interact with the peripherals.
@@ -27,7 +29,7 @@ typedef struct {
    *
    * @return  0 on success.
    */
-  unsigned char (*init)(void);
+  unsigned char (*init)();
 
   /**
    * Get the current temperature.
@@ -35,7 +37,7 @@ typedef struct {
    * @return  Return the current temperature in degrees celsius
    *          or 0 on error.
    */
-  float (*getTemperature)(void);
+  float (*getTemperature)(TempSlot _tempSlot);
 
   /**
    * Get the current heater status.
