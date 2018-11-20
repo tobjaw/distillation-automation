@@ -1,8 +1,16 @@
 #ifdef __AVR__
 
+#include "uart.h"
 #include <avr/io.h>
 #include <stdio.h>
 #include <util/setbaud.h>
+
+
+static FILE uart_output =
+    FDEV_SETUP_STREAM(uart_putchar, NULL, _FDEV_SETUP_WRITE);
+
+static FILE uart_input =
+    FDEV_SETUP_STREAM(NULL, uart_getchar, _FDEV_SETUP_READ);
 
 
 void uart_init(void) {
@@ -17,6 +25,9 @@ void uart_init(void) {
 
   UCSR0C = _BV(UCSZ01) | _BV(UCSZ00); /* 8-bit data */
   UCSR0B = _BV(RXEN0) | _BV(TXEN0);   /* Enable RX and TX */
+
+  stdout = &uart_output;
+  stdin = &uart_input;
 }
 
 int uart_putchar(char c, FILE *stream) {
@@ -28,7 +39,7 @@ int uart_putchar(char c, FILE *stream) {
   return 0;
 }
 
-char uart_getchar(FILE *stream) {
+int uart_getchar(FILE *stream) {
   loop_until_bit_is_set(UCSR0A, RXC0);
   return UDR0;
 }
