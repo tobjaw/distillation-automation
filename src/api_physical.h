@@ -5,7 +5,9 @@
 #include "AD7792.h"
 
 unsigned char initPhysical();
-int getHeaterStatusPhysical();
+int getSBHeaterStatusPhysical();
+int getActualHeaterStatusPhysical();
+int getHeaterVariablePhysical();
 int setHeaterStatusPhysical(HeaterStatus power);
 float getTemperaturePhysical(TempSlot _tempSlot);
 float getWeightPhysical();

@@ -44,7 +44,22 @@ typedef struct {
    *
    * @return  Return the current heater status or -1 on error.
    */
-  int (*getHeaterStatus)(void);
+  int (*getActualHeaterStatus)(void);
+
+
+  /**
+   * Gives the heater variable
+   *
+   * @return  Return the heater variable
+   */
+  int (*getHeaterVariable)(void);
+
+  /**
+   * Gives the heater status of the security board
+   *
+   * @return  Return the heater
+   */
+  int (*getSBHeaterStatus)(void);
 
   /**
    * Set the heater status.

@@ -79,7 +79,46 @@ int setHeaterStatusPhysical(HeaterStatus power) {
 
   return 0;
 }
-int getHeaterStatusPhysical() { return heater_status; }
+
+/**
+ * Gives the actual heater status
+ *
+ * @return  Return the new heater
+ */
+int getActualHeaterStatusPhysical() {
+  // PL2 := input
+  DDRL &= ~(1 << PL2);
+
+  if ((PINL & (1 << PL2)) && heater_status) {
+    return HEATER_ON;
+  } else {
+    return HEATER_OFF;
+  }
+}
+
+/**
+ * Gives the heater variable
+ *
+ * @return  Return the heater
+ */
+int getHeaterVariablePhysical() { return heater_status; }
+
+/**
+ * Gives the heater status of the security board
+ *
+ * @return  Return the heater
+ */
+int getSBHeaterStatusPhysical() {
+
+  // PL2 := input
+  DDRL &= ~(1 << PL2);
+
+  if (PINL & (1 << PL2)) {
+    return HEATER_ON;
+  } else {
+    return HEATER_OFF;
+  }
+}
 
 float getWeightPhysical() { return scale_getWeight(); }
 

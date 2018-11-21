@@ -38,7 +38,6 @@ void program_live(void) {
     while (1) {
     };
   }
-
   /* Main Loop
    *
    * Report sensors.

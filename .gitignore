@@ -3,4 +3,5 @@ compile_commands.json
 build
 Debug
 bin
+Release
 .vs
