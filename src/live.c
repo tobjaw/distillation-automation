@@ -49,6 +49,6 @@ void program_live(void) {
     temperature2 = api.getTemperature(SLOT2);
     weight = api.getWeight();
 
-    _log("%f,%f,%.1f", temperature1, temperature2, weight);
+    _log("%.2f,%.2f,%.1f", temperature1, temperature2, weight);
   }
 }
