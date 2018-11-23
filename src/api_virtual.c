@@ -42,3 +42,5 @@ int setHeaterStatusVirtual(HeaterStatus power) {
   heater_status_virtual = power;
   return power;
 }
+
+float getWeightVirtual() { return -1.0; }

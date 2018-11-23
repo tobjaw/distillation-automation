@@ -13,6 +13,7 @@
 #include "SPI.h"
 #include "AD7792.h"
 #include "errors.h"
+#include "scale.h"
 
 
 int heater_status = HEATER_OFF;
@@ -38,6 +39,14 @@ unsigned char initPhysical() {
              (int)AD7792_status);
     }
     return ERROR_AD7792_SLOT2;
+  }
+
+  if (scale_USARTinit()) {
+    return ERROR_SCALE_USART_INIT;
+  }
+
+  if (scale_init()) {
+    return ERROR_SCALE_INIT;
   }
 
   return 0;
@@ -71,5 +80,7 @@ int setHeaterStatusPhysical(HeaterStatus power) {
   return 0;
 }
 int getHeaterStatusPhysical() { return heater_status; }
+
+float getWeightPhysical() { return scale_getWeight(); }
 
 #endif //__AVR__
