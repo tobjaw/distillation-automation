@@ -8,6 +8,9 @@
 #define ERROR_AD7792_SLOT1 10
 #define ERROR_AD7792_SLOT2 20
 
+#define ERROR_SCALE_USART_INIT 30
+#define ERROR_SCALE_INIT 31
+
 #define LOG_INDENT "           "
 
 #define LOG_LEVEL_CSV 0

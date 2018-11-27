@@ -6,7 +6,7 @@
 
 void program_live(void) {
   API api;
-  float temperature1, temperature2;
+  float temperature1, temperature2, weight;
   unsigned char status;
 
   /* Interface to Peripherals
@@ -26,6 +26,12 @@ void program_live(void) {
     case ERROR_AD7792_SLOT2:
       _log("Error: AD7792 on SLOT2");
       break;
+    case ERROR_SCALE_USART_INIT:
+      _log("Error: Scale USART");
+      break;
+    case ERROR_SCALE_INIT:
+      _log("Error: Scale");
+      break;
     default:
       _log("Error.");
     }
@@ -41,7 +47,8 @@ void program_live(void) {
     // get current states
     temperature1 = api.getTemperature(SLOT1);
     temperature2 = api.getTemperature(SLOT2);
+    weight = api.getWeight();
 
-    _log("%f,%f", temperature1, temperature2);
+    _log("%.2f,%.2f,%.1f", temperature1, temperature2, weight);
   }
 }

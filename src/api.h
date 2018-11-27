@@ -52,6 +52,13 @@ typedef struct {
    * @return  Return the new heater status or -1 on error.
    */
   int (*setHeaterStatus)(HeaterStatus power);
+
+  /**
+   * Get the current weight measured by the scale.
+   *
+   * @return  Return the current weight or -1 on error.
+   */
+  float (*getWeight)(void);
 } API;
 
 

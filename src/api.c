@@ -16,6 +16,7 @@ API newAPI() {
   api.getTemperature = &getTemperatureVirtual;
   api.getHeaterStatus = &getHeaterStatusVirtual;
   api.setHeaterStatus = &setHeaterStatusVirtual;
+  api.getWeight = &getWeightVirtual;
 #endif // __x86_64
 
 #ifdef __AVR__
@@ -23,6 +24,7 @@ API newAPI() {
   api.getTemperature = &getTemperaturePhysical;
   api.getHeaterStatus = &getHeaterStatusPhysical;
   api.setHeaterStatus = &setHeaterStatusPhysical;
+  api.getWeight = &getWeightPhysical;
 #endif // __AVR__
 
   return api;

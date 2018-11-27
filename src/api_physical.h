@@ -8,3 +8,4 @@ unsigned char initPhysical();
 int getHeaterStatusPhysical();
 int setHeaterStatusPhysical(HeaterStatus power);
 float getTemperaturePhysical(TempSlot _tempSlot);
+float getWeightPhysical();
