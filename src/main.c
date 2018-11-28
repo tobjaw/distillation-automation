@@ -8,6 +8,7 @@
 #include "errors.h"
 #include "gui.h"
 #include "live.h"
+#include "tests.h"
 
 
 void program_info(void) {
@@ -22,10 +23,12 @@ int main() {
   _clock_setup();
   _stdout_setup();
 
-  menu_item menu[] = {{.title = "Info", .exec = program_info},
-                      {.title = "Live Reporting", .exec = program_live}};
+  menu_item menu[] = {
+      {.title = "Info", .exec = program_info},
+      {.title = "Live Reporting", .exec = program_live},
+      {.title = "UART-HEATER Test", .exec = program_uart_heater_test}};
 
-  GUI(menu, 2, 0);
+  GUI(menu, 3, 2);
 
 
   return 0;
