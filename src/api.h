@@ -10,9 +10,18 @@
  * Possible states of the heater unit.
  */
 typedef enum {
-  HEATER_ON, /**< Heater is switched on. */
-  HEATER_OFF /**< Heater is switched off. */
+  HEATER_OFF, /**< Heater is switched off. */
+  HEATER_ON   /**< Heater is switched on. */
 } HeaterStatus;
+
+
+/**
+ * Possible states of the security board (SB).
+ */
+typedef enum {
+  SB_NOT_READY, /**< Security board is not ready. */
+  SB_READY      /**< Security board is ready. */
+} SBStatus;
 
 typedef enum { SLOT1, SLOT2 } TempSlot;
 
@@ -37,36 +46,28 @@ typedef struct {
    * @return  Return the current temperature in degrees celsius
    *          or 0 on error.
    */
-  float (*getTemperature)(TempSlot _tempSlot);
+  float (*getTemperature)(TempSlot);
 
   /**
    * Get the current heater status.
    *
-   * @return  Return the current heater status or -1 on error.
+   * @return  current heater status HEATER_OFF or HEATER_ON
    */
-  int (*getActualHeaterStatus)(void);
-
-
-  /**
-   * Gives the heater variable
-   *
-   * @return  Return the heater variable
-   */
-  int (*getHeaterVariable)(void);
-
-  /**
-   * Gives the heater status of the security board
-   *
-   * @return  Return the heater
-   */
-  int (*getSBHeaterStatus)(void);
+  HeaterStatus (*getHeaterStatus)(void);
 
   /**
    * Set the heater status.
    *
-   * @return  Return the new heater status or -1 on error.
+   * @return  new heater status HEATER_OFF or HEATER_ON
    */
-  int (*setHeaterStatus)(HeaterStatus power);
+  HeaterStatus (*setHeaterStatus)(HeaterStatus);
+
+  /**
+   * Get the ready status of the security board.
+   *
+   * @return  SB_NOT_READY or SB_READY
+   */
+  SBStatus (*getSBreadyStatus)(void);
 
   /**
    * Get the current weight measured by the scale.
