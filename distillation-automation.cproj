@@ -175,6 +175,12 @@
     <Compile Include="src\compat.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\controller.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\controller.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\errors.h">
       <SubType>compile</SubType>
     </Compile>
@@ -184,10 +190,10 @@
     <Compile Include="src\gui.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\live.c">
+    <Compile Include="src\distill.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\live.h">
+    <Compile Include="src\distill.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">
