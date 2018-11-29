@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "gui.h"
+#include "compat.h"
 
 void putchars(const char *s) {
   if (!*s)
@@ -8,6 +9,10 @@ void putchars(const char *s) {
     putchar(*s++);
   }
 }
+
+void cursor_hide(void) { printf("\x1B[?25l"); }
+
+void cursor_show(void) { printf("\x1B[?25h"); }
 
 void screen_reset(void) {
   // reset cursor to top left corner
@@ -28,33 +33,59 @@ void gui_draw_menu_item(menu_item item, int selected) {
   } else {
     selection_indicator = ' ';
   }
-  printf("(%c) %s\n", selection_indicator, item.title);
+  printf(COLOR_BG_YELLOW COLOR_FG_BLACK "(%c)" COLOR_NORMAL " %s\n",
+         selection_indicator, item.title);
 }
 
-void gui_draw(menu_item items[], int menu_length, int selection) {
+void gui_draw(menu_item items[], int menu_length, int selection,
+              unsigned int timeout) {
   int i;
-  screen_clear();
   screen_reset();
 
   for (i = 0; i < menu_length; i++) {
     gui_draw_menu_item(items[i], selection == i);
   }
+
+  printf("\nAutorun in %04d...", timeout);
 }
 
 void GUI(menu_item menu[], int menu_length, int selection) {
-  int input;
+  int input = 0;
+  int timeout = GUI_TIMEOUT;
 
-  gui_draw(menu, menu_length, selection);
+  screen_clear();
+  gui_draw(menu, menu_length, selection, timeout);
 
   while (1) {
-    input = getchar();
+
+    if (STDIN_HAS_DATA) {
+      input = getchar();
+      timeout = GUI_TIMEOUT;
+    } else if (timeout > 0) {
+      timeout -= 50;
+      input = 0;
+      _sleep(50);
+    } else {
+      timeout = GUI_TIMEOUT;
+      screen_clear();
+      screen_reset();
+      cursor_show();
+      menu[selection].exec();
+      screen_clear();
+      screen_reset();
+      cursor_hide();
+    }
 
     switch (input) {
     case KEY_ENTER:
     case KEY_SPACE:
       screen_clear();
       screen_reset();
+      cursor_show();
       menu[selection].exec();
+      screen_clear();
+      screen_reset();
+      cursor_hide();
       break;
 
     case KEY_TAB:
@@ -82,6 +113,6 @@ void GUI(menu_item menu[], int menu_length, int selection) {
       break;
     }
 
-    gui_draw(menu, menu_length, selection);
+    gui_draw(menu, menu_length, selection, timeout);
   }
 }
