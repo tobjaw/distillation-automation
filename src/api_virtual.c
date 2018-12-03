@@ -29,16 +29,18 @@ float getTemperatureVirtual(TempSlot _tempSlot) {
 }
 
 
+SBStatus getSBreadyStatusVirtual() { return SB_READY; }
+
 /**
  * read power state
  */
-int getHeaterStatusVirtual() { return heater_status_virtual; }
+HeaterStatus getHeaterStatusVirtual() { return heater_status_virtual; }
 
 
 /**
  * save power state
  */
-int setHeaterStatusVirtual(HeaterStatus power) {
+HeaterStatus setHeaterStatusVirtual(HeaterStatus power) {
   heater_status_virtual = power;
   return power;
 }

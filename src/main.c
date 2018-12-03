@@ -25,10 +25,10 @@ int main() {
 
   menu_item menu[] = {
       {.title = "Info", .exec = program_info},
-      {.title = "Live Reporting", .exec = program_live},
+      {.title = "Live Monitoring", .exec = program_live},
       {.title = "UART-HEATER Test", .exec = program_uart_heater_test}};
 
-  GUI(menu, 3, 2);
+  GUI(menu, 3, 1);
 
 
   return 0;

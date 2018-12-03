@@ -16,9 +16,9 @@
 #include "scale.h"
 
 
-int heater_status = HEATER_OFF;
-
 unsigned char initPhysical() {
+  setHeaterStatusPhysical(HEATER_OFF);
+
   if (SPI_init()) {
     return ERROR_SPI_INIT;
   }
@@ -52,34 +52,51 @@ unsigned char initPhysical() {
   return 0;
 }
 
+
 float getTemperaturePhysical(TempSlot _tempSlot) {
   return AD7792_getTemperature(_tempSlot);
 }
 
-/**
- * Set the heater status physically.
- * PL5
- *
- * @return  Return the new heater status or -1 on error.
- */
-int setHeaterStatusPhysical(HeaterStatus power) {
 
+SBStatus getSBreadyStatusPhysical() {
+  // PL2 := input
+  DDRL &= ~(1 << PL2);
+
+  if (PINL & (1 << PL2)) {
+    return SB_READY;
+  } else {
+    return SB_NOT_READY;
+  }
+}
+
+
+HeaterStatus setHeaterStatusPhysical(HeaterStatus power) {
   // PL5 := output
   DDRL |= (1 << PL5);
 
-  if (power == HEATER_ON) {
-    PORTL |= (1 << PL5); // PL5 High
-    heater_status = HEATER_ON;
-  } else if (power == HEATER_OFF) {
-    PORTL &= ~(1 << PL5); // PL5 Low
-    heater_status = HEATER_OFF;
+  if (getSBreadyStatusPhysical() == SB_NOT_READY || power == HEATER_OFF) {
+    PORTL &= ~(1 << PL5);
+    heaterStatus = HEATER_OFF;
   } else {
-    return -1;
+    PORTL |= (1 << PL5);
+    heaterStatus = HEATER_ON;
   }
 
-  return 0;
+  return heaterStatus;
 }
-int getHeaterStatusPhysical() { return heater_status; }
+
+
+HeaterStatus getHeaterStatusPhysical() {
+  // PL2 := input
+  DDRL &= ~(1 << PL2);
+
+  if (getSBreadyStatusPhysical() == SB_READY && heaterStatus == HEATER_ON) {
+    return HEATER_ON;
+  } else {
+    return HEATER_OFF;
+  }
+}
+
 
 float getWeightPhysical() { return scale_getWeight(); }
 
