@@ -7,8 +7,11 @@
 
 void _sleep(int time);
 void _stdout_setup();
-long unsigned elapsedTime;
+volatile long unsigned elapsedTime;
 void _clock_setup();
 
+int switched;
+void PWMGen();
+volatile float pwmcounter;
 
 #endif /* COMPAT_H */

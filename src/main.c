@@ -9,6 +9,7 @@
 #include "gui.h"
 #include "live.h"
 #include "tests.h"
+#include "distill.h"
 
 
 void program_info(void) {
@@ -20,15 +21,18 @@ void program_info(void) {
 
 
 int main() {
+
   _clock_setup();
   _stdout_setup();
 
   menu_item menu[] = {
       {.title = "Info", .exec = program_info},
       {.title = "Live Monitoring", .exec = program_live},
-      {.title = "UART-HEATER Test", .exec = program_uart_heater_test}};
+      {.title = "UART-HEATER Test", .exec = program_uart_heater_test},
 
-  GUI(menu, 3, 1);
+      {.title = "Live Reporting", .exec = program_distill}};
+
+  GUI(menu, 4, 1);
 
 
   return 0;

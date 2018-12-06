@@ -1,5 +1,6 @@
 #include "compat.h"
 
+
 #ifdef __x86_64
 #include <unistd.h>
 #endif // __x86_64
@@ -10,7 +11,7 @@
 #include <util/delay.h>
 #endif // __AVR__
 
-long unsigned elapsedTime = 0;
+volatile long unsigned elapsedTime = 0;
 
 void _sleep(int time) {
 #ifdef __x86_64
@@ -48,4 +49,35 @@ void _clock_setup() {
 
 #ifdef __AVR__
 ISR(TIMER1_COMPA_vect) { elapsedTime += 100; }
+#endif //__AVR__
+
+
+void PWMGen() {
+#ifdef __AVR__
+  // set Timer for PWM
+
+  TCCR4A &= ~(1 << WGM40); // 0
+  TCCR4A &= ~(1 << WGM41); // 0
+  TCCR4B |= (1 << WGM42);  // 1
+  TCCR4B &= ~(1 << WGM43); // 0
+
+  // set prescaler to F_CPU / 256
+  TCCR4B &= ~((1 << CS40) | (1 << CS41));
+  TCCR4B |= (1 << CS42);
+
+  TIMSK4 |= (1 << OCIE4A);
+  OCR4A = 31249;
+  sei();
+
+#endif //__AVR__
+}
+
+#ifdef __AVR__
+ISR(TIMER4_COMPA_vect) { // pwmcounter = 1;
+  pwmcounter += 0.5;
+  if (pwmcounter >= 16) {
+    pwmcounter = 0;
+    switched = 0;
+  }
+}
 #endif //__AVR__
