@@ -6,10 +6,11 @@
 float PI_controller(float ref_temp, float current_temp, float Kp, float Ki) {
 
   // control part
-  float esum = 0.0;
+
   float error = ref_temp - current_temp;
 
-  esum = esum + error;
+   static float esum = 0.0;
+  esum = esum + (error * 0.3);  // 0.3 = sample time
 
 
   float output = Kp * error + Ki * esum;
@@ -43,7 +44,7 @@ float bangbang_ctr(float ref_temp, float hys, float current_temp) {
 int heater_switch(float value) // value [0,1] , defines the heat power
 {
   float pwm_value = 0.0625 * pwmcounter;
-  if (value >= pwm_value) {
+  if (value > pwm_value) {
     return 1;
   } else {
     return 0;

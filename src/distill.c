@@ -12,12 +12,18 @@ void program_distill(void) {
   float temperature1, temperature2;
   unsigned char status;
   int start = 0;
-
+  float PI_value = 0.0; 	
   int switch_ON = 0;
-  int initialcdn;
+  int initialcdn = 0;
   float roomtemperature = 0.0;
-  int modeA;
-  int check;
+  int mode_change = 0;
+  float boiling_power;
+  float weight = 0.0;
+  float time1 = 0.0;
+  float time2 = 0.0;
+ float ref = 95.0;
+int dead_time = 0;
+int timer = 0;
 
   /* Interface to Peripherals
    * see "api.h" for documentation
@@ -53,6 +59,7 @@ void program_distill(void) {
     // get current states
     temperature1 = api.getTemperature(SLOT1); // swamp temp
     temperature2 = api.getTemperature(SLOT2); // head temp
+    weight = api.getWeight();	
 
     if (initialcdn == 0) {
       roomtemperature = temperature1;
@@ -60,51 +67,72 @@ void program_distill(void) {
     }
 
     start++;
-
-
-    if (bangbang_ctr_init(85.0 - roomtemperature, 0.5,
-                          temperature2 - roomtemperature) == 1) {
-      modeA = 1;
+    
+/*
+    if(deadtime == 0){
+    if(temperature1 >= ref){     //to increase temp indepentent of measured vallue, change  ">=" to "<="
+	ref += 2.0;
+	deadtime = 1;
+	timer ++;	
+       	}  
+    } else {
+        timer++;
     }
+   
+    if(timer == 120){
+	    deadtime = 0;
+	    timer = 0;
+    }*/
 
-    if (start >= 240) {
+    if(temperature1 >= ref){
+      timer++;
+  	if(timer >= 120){
+      	mode_change = 1;
+	}
+      }
+    
+    
+   
 
-      switch (modeA) {
-      // control part (PID)
+   // 0.01321, 5.3447*pow(10,-6)  parameter for water system
+   // 0.018487, 4.1145*pow(10,-6) parameter for wine	
+    
+    if (start >= 60) {
+
+     PI_value = PI_controller(ref - roomtemperature, temperature1 - roomtemperature, 0.018487, 4.1145*pow(10,-6));
+    
+      switch (mode_change) {
+      // heanting control part (PID)
       case 0:
         if (switched == 0) {
-          switch_ON = heater_switch(0.5);
-          if (switch_ON == 1) {
-            api.setHeaterStatus(HEATER_ON);
-          } else {
             api.setHeaterStatus(HEATER_OFF);
             switched = 1;
           }
         }
         break;
 
-      // control part bang-bang
-      case 1:
+      // boiling control part
+      case 1: 	
         if (switched == 0) {
-          check = bangbang_ctr(85.0 - roomtemperature, 0.5,
-                               temperature2 - roomtemperature);
-          if (check == 1) {
-            switch_ON = heater_switch(0.1);
+            switch_ON = heater_switch(1.0);
             if (switch_ON == 1) {
               api.setHeaterStatus(HEATER_ON);
             } else {
               api.setHeaterStatus(HEATER_OFF);
               switched = 1;
-            }
+            }	
           }
-        }
         break;
+	
       }
+    
+
     }
-    _sleep(100);
-    _log("%.2f,%.2f,%.2f,%.2f,%d", temperature1, temperature2, pwmcounter, 0.5,
+   
+    _log("%.2f,%.2f,%.2f,%.2f,%.2f,%d", temperature1, temperature2, pwmcounter, PI_value, weight,
          switch_ON);
-    _sleep(100);
-  }
+    }
+    
+  
   // time to get Temp-value 300ms + sleep time 200ms = 500ms;
 }

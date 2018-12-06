@@ -59,14 +59,14 @@ void PWMGen() {
   TCCR4A &= ~(1 << WGM40); // 0
   TCCR4A &= ~(1 << WGM41); // 0
   TCCR4B |= (1 << WGM42);  // 1
-  TCCR4B &= ~(1 << WGM43); // 0
+ // TCCR4B &= ~(1 << WGM43); // 0
 
   // set prescaler to F_CPU / 256
-  TCCR4B &= ~((1 << CS40) | (1 << CS41));
-  TCCR4B |= (1 << CS42);
+  TCCR4B |= ((1 << CS40) | (1 << CS41));
+  TCCR4B &=  ~(1 << CS42);
 
   TIMSK4 |= (1 << OCIE4A);
-  OCR4A = 31249;
+  OCR4A = 24999;  //31249 for 0.5s 
   sei();
 
 #endif //__AVR__
@@ -74,7 +74,7 @@ void PWMGen() {
 
 #ifdef __AVR__
 ISR(TIMER4_COMPA_vect) { // pwmcounter = 1;
-  pwmcounter += 0.5;
+  pwmcounter += 0.1;
   if (pwmcounter >= 16) {
     pwmcounter = 0;
     switched = 0;
