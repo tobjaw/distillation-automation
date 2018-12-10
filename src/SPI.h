@@ -1,11 +1,10 @@
-#include <avr/io.h>
+/**
+ * @file SPI.h
+ *
+ * Low level abstractions over SPI communication.
+ */
 
-/* #define PORT_SPI    PORTB */
-/* #define DDR_SPI     DDRB */
-/* #define DD_MISO     DDB4 */
-/* #define DD_MOSI     DDB3 */
-/* #define DD_SS       DDB2 */
-/* #define DD_SCK      DDB5 */
+#include <avr/io.h>
 
 #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
 #define BYTE_TO_BINARY(byte)                                                   \
@@ -24,7 +23,6 @@
 #define SPI_SS_0_PIN PING
 #define SPI_SS_0_DDR DDRG
 
-// SS 2, da bin SS2 angesprochen wird
 #define SPI_SS_2 PF2
 #define SPI_SS_2_PORT PORTF
 #define SPI_SS_2_PIN PINF
@@ -45,11 +43,22 @@
 #define SPI_SCK_PIN PINB
 #define SPI_SCK_DDR DDRB
 
-char SPI_init();
-void SPI_tradeByte(uint8_t byte);
-
 #define SPI_SLAVE_0_SELECT SPI_SS_0_PORT &= ~(1 << SPI_SS_0)
 #define SPI_SLAVE_0_DESELECT SPI_SS_0_PORT |= (1 << SPI_SS_0)
 
 #define SPI_SLAVE_2_SELECT SPI_SS_2_PORT &= ~(1 << SPI_SS_2)
 #define SPI_SLAVE_2_DESELECT SPI_SS_2_PORT |= (1 << SPI_SS_2)
+
+/**
+ * Init SPI communication
+ *
+ * @return  0
+ */
+char SPI_init();
+
+/**
+ * Trade a single byte with current SPI slave
+ *
+ * @param  byte single byte to trade
+ */
+void SPI_tradeByte(uint8_t byte);

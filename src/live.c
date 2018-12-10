@@ -1,3 +1,9 @@
+/**
+ * @file live.c
+ *
+ * Live Monitoring of connected peripherals
+ */
+
 #include <stdio.h>
 #include "main.h"
 #include "api.h"

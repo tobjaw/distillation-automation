@@ -1,10 +1,8 @@
 /**
- * @file  main.h
+ * @file main.h
+ *
+ * Main entry point into distillation-automation software
  */
-
-
-extern const int TEMPERATURE_MIN;
-extern const int TEMPERATURE_MAX;
 
 #ifdef __AVR__
 #define _log(f_, ...) printf("%08lu," f_ "\n", elapsedTime, ##__VA_ARGS__)

@@ -1,3 +1,11 @@
+/**
+ * @file gui.c
+ *
+ * Interactive menu system
+ *
+ * Allows to choose different programs interactively using a host computer.
+ */
+
 #include <stdio.h>
 #include "gui.h"
 #include "compat.h"

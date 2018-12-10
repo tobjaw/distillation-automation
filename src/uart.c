@@ -1,10 +1,15 @@
+/**
+ * @file uart.c
+ *
+ * Serial communication between hardware and host computer.
+ */
+
 #ifdef __AVR__
 
 #include "uart.h"
 #include <avr/io.h>
 #include <stdio.h>
 #include <util/setbaud.h>
-
 
 static FILE uart_output =
     FDEV_SETUP_STREAM(uart_putchar, NULL, _FDEV_SETUP_WRITE);
