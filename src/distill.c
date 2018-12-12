@@ -13,6 +13,18 @@
 #include "controller.h"
 #include "distill.h"
 
+void outputLivePlotting(API api, float temp1, float temp2, float weight,
+                        float PI_value) {
+  SBStatus sbStatus;
+  HeaterStatus heaterStatus;
+
+  sbStatus = api.getSBreadyStatus();
+  heaterStatus = api.getHeaterStatus();
+
+  _log("%f,%f,%f,%d,%d,%f", temp1, temp2, weight, sbStatus, heaterStatus,
+       PI_value);
+}
+
 void program_distill(void) {
   API api;
   float temperature1, temperature2;
@@ -106,8 +118,8 @@ void program_distill(void) {
         break;
       }
     }
-
-    _log("%.2f,%.2f,%.2f,%.2f,%.2f,%d", temperature1, temperature2, pwmcounter,
-         PI_value, weight, switch_ON);
+    _sleep(100);
+    outputLivePlotting(api, temperature1, temperature2, weight, PI_value);
+    _sleep(100);
   }
 }
