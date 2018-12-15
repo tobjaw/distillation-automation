@@ -2,5 +2,6 @@
 #define TESTS_H_
 
 void program_uart_heater_test(void);
+void program_stepper(void);
 
 #endif /* TESTS_H_ */

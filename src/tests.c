@@ -4,6 +4,7 @@
 #include "api.h"
 #include "compat.h"
 #include "errors.h"
+#include "stepper.h"
 
 void program_uart_heater_test(void) {
   API api;
@@ -51,4 +52,34 @@ void program_uart_heater_test(void) {
     _log("%f, %f, %d", t1, t2, h);
     _sleep(100);
   }
+}
+
+void program_stepper(void){
+	
+	  API api;
+
+	  api = newAPI();
+	  unsigned char status = api.init();
+
+	  if (status) {
+		  switch (status) {
+			  case ERROR_SPI_INIT:
+			  _log("Error: Could not init SPI.");
+			  break;
+			  case ERROR_AD7792_SLOT1:
+			  _log("Error: AD7792 on SLOT1.");
+			  break;
+			  case ERROR_AD7792_SLOT2:
+			  _log("Error: AD7792 on SLOT2");
+			  break;
+			  default:
+			  _log("Error.");
+		  }
+		  while (1) {
+		  };
+	  }
+	  
+	  _log("Start stepper test...\n\n");
+	  steppertest();
+	  _log("Stepper test finished.");
 }

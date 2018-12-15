@@ -24,6 +24,14 @@ typedef enum {
 } SBStatus;
 
 typedef enum { SLOT1, SLOT2 } TempSlot;
+	
+/**
+ * Possible stepper directions.
+ */
+typedef enum {
+  CW, /**< Heater is switched off. */
+  CCW   /**< Heater is switched on. */
+} rotDirection;
 
 
 /**
