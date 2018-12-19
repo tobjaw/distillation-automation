@@ -77,6 +77,28 @@ void GUI(menu_item menu[], int menu_length, int selection) {
     }
 
     switch (input) {
+    case KEY_ONE:
+    case KEY_TWO:
+    case KEY_THREE:
+    case KEY_FOUR:
+    case KEY_FIVE:
+    case KEY_SIX:
+    case KEY_SEVEN:
+    case KEY_EIGHT:
+    case KEY_NINE:
+      selection = (input - 48) - 1;
+
+      if (!(selection > menu_length - 1)) {
+        screen_clear();
+        screen_reset();
+        cursor_show();
+        menu[selection].exec();
+        screen_clear();
+        screen_reset();
+        cursor_hide();
+      }
+      break;
+
     case KEY_ENTER:
     case KEY_SPACE:
       screen_clear();

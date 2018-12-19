@@ -17,6 +17,16 @@
 #define KEY_SPACE 32
 #define KEY_BRACKET_SQUARE_OPEN 91
 
+#define KEY_ONE 49
+#define KEY_TWO 50
+#define KEY_THREE 51
+#define KEY_FOUR 52
+#define KEY_FIVE 53
+#define KEY_SIX 54
+#define KEY_SEVEN 55
+#define KEY_EIGHT 56
+#define KEY_NINE 57
+
 #define COLOR_NORMAL "\x1B[0m"
 
 #define COLOR_FG_BLACK "\x1B[30m"
