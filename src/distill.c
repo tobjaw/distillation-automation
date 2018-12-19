@@ -12,12 +12,13 @@ void program_distill(void) {
   float temperature1, temperature2;
   unsigned char status;
   int start = 0;
-
+  float PI_value = 0.0;
   int switch_ON = 0;
-  int initialcdn;
+  int initialcdn = 0;
   float roomtemperature = 0.0;
-  int modeA;
-  int check;
+  int mode_change = 0;
+  float weight = 0.0;
+  float ref = 95.0;
 
   /* Interface to Peripherals
    * see "api.h" for documentation
@@ -53,6 +54,7 @@ void program_distill(void) {
     // get current states
     temperature1 = api.getTemperature(SLOT1); // swamp temp
     temperature2 = api.getTemperature(SLOT2); // head temp
+    weight = api.getWeight();
 
     if (initialcdn == 0) {
       roomtemperature = temperature1;
@@ -61,19 +63,20 @@ void program_distill(void) {
 
     start++;
 
+    // 0.01321, 5.3447*pow(10,-6)  parameter for water system
+    // 0.018487, 4.1145*pow(10,-6) parameter for wine
 
-    if (bangbang_ctr_init(85.0 - roomtemperature, 0.5,
-                          temperature2 - roomtemperature) == 1) {
-      modeA = 1;
-    }
+    if (start >= 60) {
 
-    if (start >= 240) {
+      PI_value =
+          PI_controller(ref - roomtemperature, temperature1 - roomtemperature,
+                        0.018487, 4.1145 * pow(10, -6));
 
-      switch (modeA) {
-      // control part (PID)
+      switch (mode_change) {
+      // heanting control part (PID)
       case 0:
         if (switched == 0) {
-          switch_ON = heater_switch(0.5);
+          switch_ON = heater_switch(PI_value);
           if (switch_ON == 1) {
             api.setHeaterStatus(HEATER_ON);
           } else {
@@ -83,28 +86,22 @@ void program_distill(void) {
         }
         break;
 
-      // control part bang-bang
+      // boiling control part
       case 1:
         if (switched == 0) {
-          check = bangbang_ctr(85.0 - roomtemperature, 0.5,
-                               temperature2 - roomtemperature);
-          if (check == 1) {
-            switch_ON = heater_switch(0.1);
-            if (switch_ON == 1) {
-              api.setHeaterStatus(HEATER_ON);
-            } else {
-              api.setHeaterStatus(HEATER_OFF);
-              switched = 1;
-            }
+          switch_ON = heater_switch(1.0);
+          if (switch_ON == 1) {
+            api.setHeaterStatus(HEATER_ON);
+          } else {
+            api.setHeaterStatus(HEATER_OFF);
+            switched = 1;
           }
         }
         break;
       }
     }
-    _sleep(100);
-    _log("%.2f,%.2f,%.2f,%.2f,%d", temperature1, temperature2, pwmcounter, 0.5,
-         switch_ON);
-    _sleep(100);
+
+    _log("%.2f,%.2f,%.2f,%.2f,%.2f,%d", temperature1, temperature2, pwmcounter,
+         PI_value, weight, switch_ON);
   }
-  // time to get Temp-value 300ms + sleep time 200ms = 500ms;
 }
