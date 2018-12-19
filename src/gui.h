@@ -56,7 +56,7 @@ void screen_reset(void);
 void cursor_hide(void);
 void cursor_show(void);
 
-void gui_draw_menu_item(menu_item item, int selected);
+void gui_draw_menu_item(menu_item item, int selected, int menu_item_index);
 void gui_draw(menu_item items[], int menu_length, int selection,
               unsigned int timeout);
 

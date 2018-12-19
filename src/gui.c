@@ -26,15 +26,15 @@ void screen_clear(void) {
   putchars(chars);
 }
 
-void gui_draw_menu_item(menu_item item, int selected) {
+void gui_draw_menu_item(menu_item item, int selected, int menu_item_index) {
   char selection_indicator;
   if (selected) {
     selection_indicator = '*';
   } else {
     selection_indicator = ' ';
   }
-  printf(COLOR_BG_YELLOW COLOR_FG_BLACK "(%c)" COLOR_NORMAL " %s\n",
-         selection_indicator, item.title);
+  printf(COLOR_BG_YELLOW COLOR_FG_BLACK "(%c)" COLOR_NORMAL " %d: %s\n",
+         selection_indicator, menu_item_index + 1, item.title);
 }
 
 void gui_draw(menu_item items[], int menu_length, int selection,
@@ -43,7 +43,7 @@ void gui_draw(menu_item items[], int menu_length, int selection,
   screen_reset();
 
   for (i = 0; i < menu_length; i++) {
-    gui_draw_menu_item(items[i], selection == i);
+    gui_draw_menu_item(items[i], selection == i, i);
   }
 
   printf("\nAutorun in %04d...", timeout);
@@ -91,7 +91,8 @@ void GUI(menu_item menu[], int menu_length, int selection) {
     case KEY_EIGHT:
     case KEY_NINE:
       if (!((input - 48) - 1 > menu_length - 1)) {
-        program_execute(menu, (input - 48) - 1);
+        selection = (input - 48) - 1;
+        program_execute(menu, selection);
       }
       break;
 
