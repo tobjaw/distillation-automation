@@ -9,7 +9,7 @@
 #define STDIN_HAS_DATA 0
 #endif // __x86_64
 
-#define GUI_TIMEOUT 1500
+#define GUI_TIMEOUT 5000
 
 #define KEY_TAB 9
 #define KEY_ENTER 13
