@@ -90,10 +90,8 @@ void GUI(menu_item menu[], int menu_length, int selection) {
     case KEY_SEVEN:
     case KEY_EIGHT:
     case KEY_NINE:
-      selection = (input - 48) - 1;
-
-      if (!(selection > menu_length - 1)) {
-        program_execute(menu, selection);
+      if (!((input - 48) - 1 > menu_length - 1)) {
+        program_execute(menu, (input - 48) - 1);
       }
       break;
 
