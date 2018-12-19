@@ -9,13 +9,23 @@
 #define STDIN_HAS_DATA 0
 #endif // __x86_64
 
-#define GUI_TIMEOUT 1500
+#define GUI_TIMEOUT 5000
 
 #define KEY_TAB 9
 #define KEY_ENTER 13
 #define KEY_ESCAPE 27
 #define KEY_SPACE 32
 #define KEY_BRACKET_SQUARE_OPEN 91
+
+#define KEY_ONE 49
+#define KEY_TWO 50
+#define KEY_THREE 51
+#define KEY_FOUR 52
+#define KEY_FIVE 53
+#define KEY_SIX 54
+#define KEY_SEVEN 55
+#define KEY_EIGHT 56
+#define KEY_NINE 57
 
 #define COLOR_NORMAL "\x1B[0m"
 
@@ -45,6 +55,12 @@ void screen_reset(void);
 
 void cursor_hide(void);
 void cursor_show(void);
+
+void gui_draw_menu_item(menu_item item, int selected, int menu_item_index);
+void gui_draw(menu_item items[], int menu_length, int selection,
+              unsigned int timeout);
+
+void program_execute(menu_item *menu, int selection);
 
 void GUI(menu_item menu[], int menu_length, int selection);
 
