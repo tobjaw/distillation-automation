@@ -9,8 +9,8 @@ float PI_controller(float ref_temp, float current_temp, float Kp, float Ki) {
 
   float error = ref_temp - current_temp;
 
-   static float esum = 0.0;
-  esum = esum + (error * 0.3);  // 0.3 = sample time
+  static float esum = 0.0;
+  esum = esum + (error * 0.3); // 0.3 = sample time
 
 
   float output = Kp * error + Ki * esum;
