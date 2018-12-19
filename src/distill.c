@@ -17,13 +17,8 @@ void program_distill(void) {
   int initialcdn = 0;
   float roomtemperature = 0.0;
   int mode_change = 0;
-  float boiling_power;
   float weight = 0.0;
-  float time1 = 0.0;
-  float time2 = 0.0;
- float ref = 95.0;
-int dead_time = 0;
-int timer = 0;
+  float ref = 95.0;
 
   /* Interface to Peripherals
    * see "api.h" for documentation
@@ -68,32 +63,6 @@ int timer = 0;
 
     start++;
     
-/*
-    if(deadtime == 0){
-    if(temperature1 >= ref){     //to increase temp indepentent of measured vallue, change  ">=" to "<="
-	ref += 2.0;
-	deadtime = 1;
-	timer ++;	
-       	}  
-    } else {
-        timer++;
-    }
-   
-    if(timer == 120){
-	    deadtime = 0;
-	    timer = 0;
-    }*/
-
-    if(temperature1 >= ref){
-      timer++;
-  	if(timer >= 120){
-      	mode_change = 1;
-	}
-      }
-    
-    
-   
-
    // 0.01321, 5.3447*pow(10,-6)  parameter for water system
    // 0.018487, 4.1145*pow(10,-6) parameter for wine	
     
@@ -105,8 +74,12 @@ int timer = 0;
       // heanting control part (PID)
       case 0:
         if (switched == 0) {
-            api.setHeaterStatus(HEATER_OFF);
-            switched = 1;
+		switch_ON = heater_switch(PI_value);
+		if(switch_ON == 1){
+			api.setHeaterStatus(HEATER_ON);
+		} else {
+                        api.setHeaterStatus(HEATER_OFF);
+                        switched = 1;
           }
         }
         break;
@@ -114,25 +87,20 @@ int timer = 0;
       // boiling control part
       case 1: 	
         if (switched == 0) {
-            switch_ON = heater_switch(1.0);
-            if (switch_ON == 1) {
-              api.setHeaterStatus(HEATER_ON);
-            } else {
-              api.setHeaterStatus(HEATER_OFF);
-              switched = 1;
+                switch_ON = heater_switch(1.0);
+                if (switch_ON == 1) {
+                         api.setHeaterStatus(HEATER_ON);
+                } else {
+                         api.setHeaterStatus(HEATER_OFF);
+                         switched = 1;
             }	
           }
         break;
 	
       }
-    
-
     }
    
     _log("%.2f,%.2f,%.2f,%.2f,%.2f,%d", temperature1, temperature2, pwmcounter, PI_value, weight,
          switch_ON);
-    }
-    
-  
-  // time to get Temp-value 300ms + sleep time 200ms = 500ms;
-}
+    }  
+ }
