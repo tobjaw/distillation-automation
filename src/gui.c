@@ -49,7 +49,7 @@ void gui_draw(menu_item items[], int menu_length, int selection,
   printf("\nAutorun in %04d...", timeout);
 }
 
-void program_execute(menu_item* menu, int selection) {
+void program_execute(menu_item *menu, int selection) {
   screen_clear();
   screen_reset();
   cursor_show();
@@ -77,7 +77,7 @@ void GUI(menu_item menu[], int menu_length, int selection) {
       _sleep(50);
     } else {
       timeout = GUI_TIMEOUT;
-      program_execute(menu,selection);
+      program_execute(menu, selection);
     }
 
     switch (input) {
@@ -93,13 +93,13 @@ void GUI(menu_item menu[], int menu_length, int selection) {
       selection = (input - 48) - 1;
 
       if (!(selection > menu_length - 1)) {
-        program_execute(menu,selection);
+        program_execute(menu, selection);
       }
       break;
 
     case KEY_ENTER:
     case KEY_SPACE:
-      program_execute(menu,selection);
+      program_execute(menu, selection);
       break;
 
     case KEY_TAB:

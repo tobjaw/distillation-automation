@@ -57,9 +57,10 @@ void cursor_hide(void);
 void cursor_show(void);
 
 void gui_draw_menu_item(menu_item item, int selected);
-void gui_draw(menu_item items[], int menu_length, int selection, unsigned int timeout);
+void gui_draw(menu_item items[], int menu_length, int selection,
+              unsigned int timeout);
 
-void program_execute(menu_item* menu, int selection);
+void program_execute(menu_item *menu, int selection);
 
 void GUI(menu_item menu[], int menu_length, int selection);
 
