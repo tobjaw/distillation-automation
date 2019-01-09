@@ -18,6 +18,11 @@
 
 #define SCALE_USART_HAS_DATA bit_is_set(UCSR1A, RXC1)
 
+/* controls the weight of previous vs. current measurement
+ * lower values cause a slower response
+ */
+#define SCALE_LOWPASS_ALPHA 0.1
+
 /**
  * Setup USART communication for scale peripheral
  *

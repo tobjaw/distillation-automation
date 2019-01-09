@@ -75,7 +75,8 @@ float scale_getWeight(void) {
   uint8_t i;
   char word[6];
   int retries = 0;
-  static float weight = -1.0;
+  static float weight = 0;
+  static float weight_filtered = 0;
 
   if (SCALE_USART_HAS_DATA) {
 
@@ -104,10 +105,15 @@ float scale_getWeight(void) {
     }
     retries = 0;
 
+    // simple EMS implementing a first-order lowpass filter
+    // see:
+    // https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average
     weight = scale_wordToFloat(word);
+    weight_filtered = (SCALE_LOWPASS_ALPHA * weight) +
+                      ((1 - SCALE_LOWPASS_ALPHA) * weight_filtered);
   }
 
-  return weight;
+  return weight_filtered;
 }
 
 #endif //__AVR__
