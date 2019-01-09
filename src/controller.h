@@ -1,3 +1,9 @@
+/**
+ * @file controller.h
+ *
+ * Controller implementation for usage in distillation program.
+ */
+
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 

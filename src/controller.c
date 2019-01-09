@@ -1,3 +1,9 @@
+/**
+ * @file controller.c
+ *
+ * Controller implementation for usage in distillation program.
+ */
+
 #include "controller.h"
 #include "compat.h"
 #include "distill.h"

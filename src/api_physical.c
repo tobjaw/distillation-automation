@@ -1,11 +1,9 @@
 /**
- * @file  api_physical.c
+ * @file api_physical.c
  *
- * Missing implementation.
- *
- * We need to read the actual hardware sensors
- * and turn actuators (like a heater) on and off.
+ * Physical implementation of the API
  */
+
 #ifdef __AVR__
 #include <avr/io.h>
 #include <stdio.h>

@@ -1,3 +1,9 @@
+/**
+ * @file compat.h
+ *
+ * Compatability functions for cross-platform support.
+ */
+
 #ifndef COMPAT_H
 #define COMPAT_H
 

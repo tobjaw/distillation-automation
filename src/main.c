@@ -1,5 +1,7 @@
 /**
- * @file  main.c
+ * @file main.c
+ *
+ * Main entry point into distillation-automation software
  */
 
 #include <stdio.h>

@@ -1,6 +1,9 @@
 /**
- * @file  api_physical.h
+ * @file api_physical.h
+ *
+ * Physical implementation of the API
  */
+
 #ifndef API_PHYSICAL_H
 #define API_PHYSICAL_H
 

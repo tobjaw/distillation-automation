@@ -1,3 +1,11 @@
+/**
+ * @file gui.h
+ *
+ * Interactive menu system
+ *
+ * Allows to choose different programs interactively using a host computer.
+ */
+
 #ifndef GUI_H
 #define GUI_H
 

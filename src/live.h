@@ -1,3 +1,9 @@
+/**
+ * @file live.h
+ *
+ * Live Monitoring of connected peripherals
+ */
+
 #ifndef LIVE_H
 #define LIVE_H
 

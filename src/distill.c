@@ -1,3 +1,9 @@
+/**
+ * @file distill.c
+ *
+ * Main distillation program
+ */
+
 #include <stdio.h>
 #include <math.h>
 #include "main.h"

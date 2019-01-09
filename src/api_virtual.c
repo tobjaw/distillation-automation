@@ -1,5 +1,5 @@
 /**
- * @file  api_virtual.c
+ * @file api_virtual.c
  *
  * Virtual implementation of the peripherals,
  * used for development, simulation and tests.

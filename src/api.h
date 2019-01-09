@@ -1,7 +1,8 @@
 /**
- * @file  api.h
+ * @file api.h
+ *
+ * Primary interface to peripherals
  */
-// make sure we only include this file once.
 #ifndef API_H
 #define API_H
 
@@ -83,6 +84,8 @@ typedef struct {
  *
  * Uses either virtual or physical implementations
  * behind a common Interface.
+ *
+ * @return  API
  */
 API newAPI();
 

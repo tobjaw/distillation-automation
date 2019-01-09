@@ -1,3 +1,9 @@
+/**
+ * @file tests.h
+ *
+ * Test programs.
+ */
+
 #ifndef TESTS_H_
 #define TESTS_H_
 

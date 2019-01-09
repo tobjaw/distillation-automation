@@ -1,3 +1,11 @@
+/**
+ * @file scale.c
+ *
+ * Communication with scale peripheral
+ *
+ * Uses USART channel 1.
+ */
+
 #ifdef __AVR__
 #include <stdio.h>
 #include <avr/io.h>

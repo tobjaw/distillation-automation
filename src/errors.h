@@ -1,3 +1,9 @@
+/**
+ * @file errors.h
+ *
+ * Contains commonly used error codes
+ */
+
 #ifndef ERRORS_H
 #define ERRORS_H
 

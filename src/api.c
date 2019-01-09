@@ -1,3 +1,9 @@
+/**
+ * @file api.c
+ *
+ * Primary interface to peripherals
+ */
+
 #include "api.h"
 
 #ifdef __x86_64

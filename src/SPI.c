@@ -1,3 +1,9 @@
+/**
+ * @file SPI.c
+ *
+ * Low level abstractions over SPI communication.
+ */
+
 #ifdef __AVR__
 #include <stdio.h>
 #include <avr/io.h>
@@ -24,11 +30,6 @@ char SPI_init() {
 
   // SCK output
   SPI_SCK_DDR |= (1 << SPI_SCK);
-
-
-  /* SPCR =
-   * (1<<SPE)|(1<<MSTR)|(1<<SPR0)|(1<<SPR1)|(0<<DORD)|(1<<CPOL)|(1<<CPHA); */
-
 
   // MSB First
   SPCR &= ~(1 << DORD);

@@ -1,3 +1,17 @@
+/**
+ * @file AD7792.h
+ *
+ * Interface to external AD7792 AD converters.
+ *
+ * Requires populating the first and second hardware extension slot with a
+ * AD7792. Each converter needs to be setup with two Pt1000 temperature sensors,
+ * even though only the first is actually queried.
+ *
+ * @todo allow single temperature sensor configuration
+ *
+ * @todo fix temperature drop when heater is powered on
+ */
+
 #define AD7792_RDY PB3
 #define AD7792_RDY_PORT PORTB
 #define AD7792_RDY_PIN PINB
@@ -26,8 +40,8 @@
 
 #define AD7792_CONFIG_BIAS_SEL(x) (x << 14)
 #define AD7792_CONFIG_BIAS_0 0 // disabled
-#define AD7792_CONFIG_BIAS_1 0 // connected to AIN1(-)
-#define AD7792_CONFIG_BIAS_2 0 // connected to AIN2(-)
+#define AD7792_CONFIG_BIAS_1 1 // connected to AIN1(-)
+#define AD7792_CONFIG_BIAS_2 2 // connected to AIN2(-)
 
 #define AD7792_CONFIG_BURNOUT_DISABLE (0 << 13)
 #define AD7792_CONFIG_BURNOUT_ENABLE (1 << 13)
@@ -111,6 +125,99 @@
 
 #include "api.h"
 
-int AD7792_isConnected(TempSlot _tempSlot);
-unsigned char AD7792_init(TempSlot _tempSlot);
-float AD7792_getTemperature(TempSlot _tempSlot);
+/**
+ * Select a specific SPI slave
+ *
+ * @param  slot  AD7729 controller slot
+ */
+void selectSlave(TempSlot slot);
+
+/**
+ * Deselect a specific SPI slave
+ *
+ * @param  slot  AD7729 controller slot
+ */
+void deselectSlave(TempSlot slot);
+
+/**
+ * Read bytes from a AD7792
+ *
+ * @param   addr    register address to read from
+ * @param   length  amount of bytes to read
+ * @param   slot    AD7792 slot
+ * @return  bytes   read from the currently selected AD7792.
+ */
+unsigned short AD7792_read(unsigned char addr, unsigned char length,
+                           TempSlot slot);
+
+/**
+ * Write bytes to a AD7792
+ *
+ * @param  addr    register address to write to
+ * @param  data    data to write
+ * @param  length  amount of bytes to write
+ * @param  slot    AD7792 slot
+ */
+void AD7792_write(unsigned char addr, unsigned short data, unsigned int length,
+                  TempSlot slot);
+
+/**
+ * Write bytes to a AD7792 and verify
+ *
+ * After writing, read back register data and confirm it matches @a data.
+ * @warning this will only work for idempotent registers
+ *
+ * @param  addr    register address to write to
+ * @param  data    data to write
+ * @param  length  amount of bytes to write
+ * @param  slot    AD7792 slot
+ *
+ * @return 1 if data matches, 0 else
+ */
+int AD7792_write_verify(unsigned char addr, unsigned short data,
+                        unsigned int length, TempSlot slot);
+
+/**
+ * Wait until AD7792 is ready
+ *
+ * The AD needs time for conversions; busy wait until it is ready.
+ *
+ * @param  slot  AD7792 slot
+ */
+void AD7792_waitReady(TempSlot slot);
+
+/**
+ * Check connection to AD7792
+ *
+ * Read out model register and match.
+ *
+ * @param   slot  AD7792 slot
+ *
+ * @return  1 if AD7792 connected, 0 else
+ */
+int AD7792_isConnected(TempSlot slot);
+
+/**
+ * Reset AD7792
+ *
+ * @param   slot  AD7792 slot
+ */
+void AD7792_reset(TempSlot slot);
+
+/**
+ * Init AD7792
+ *
+ * @param   slot  AD7792 slot
+ *
+ * @return  0 on success, positive int error code on error.
+ */
+unsigned char AD7792_init(TempSlot slot);
+
+/**
+ * Get temperature in degrees Celisus
+ *
+ * @param   slot AD7792 slot
+ *
+ * @return  temperature in degrees Celisus
+ */
+float AD7792_getTemperature(TempSlot slot);

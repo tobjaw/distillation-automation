@@ -1,3 +1,9 @@
+/**
+ * @file tests.c
+ *
+ * Test programs.
+ */
+
 #include <stdio.h>
 #include "tests.h"
 #include "main.h"
