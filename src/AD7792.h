@@ -128,23 +128,24 @@
 /**
  * Select a specific SPI slave
  *
- * @param  slot AD7729 controller slot
+ * @param  slot  AD7729 controller slot
  */
 void selectSlave(TempSlot slot);
 
 /**
  * Deselect a specific SPI slave
  *
- * @param  slot AD7729 controller slot
+ * @param  slot  AD7729 controller slot
  */
 void deselectSlave(TempSlot slot);
 
 /**
  * Read bytes from a AD7792
  *
- * @param  addr   register address to read from
- * @param  length amount of bytes to read
- * @param  slot   AD7792 slot
+ * @param   addr    register address to read from
+ * @param   length  amount of bytes to read
+ * @param   slot    AD7792 slot
+ * @return  bytes   read from the currently selected AD7792.
  */
 unsigned short AD7792_read(unsigned char addr, unsigned char length,
                            TempSlot slot);
@@ -152,10 +153,10 @@ unsigned short AD7792_read(unsigned char addr, unsigned char length,
 /**
  * Write bytes to a AD7792
  *
- * @param  addr   register address to write to
- * @param  data   data to write
- * @param  length amount of bytes to write
- * @param  slot   AD7792 slot
+ * @param  addr    register address to write to
+ * @param  data    data to write
+ * @param  length  amount of bytes to write
+ * @param  slot    AD7792 slot
  */
 void AD7792_write(unsigned char addr, unsigned short data, unsigned int length,
                   TempSlot slot);
@@ -166,10 +167,10 @@ void AD7792_write(unsigned char addr, unsigned short data, unsigned int length,
  * After writing, read back register data and confirm it matches @a data.
  * @warning this will only work for idempotent registers
  *
- * @param  addr   register address to write to
- * @param  data   data to write
- * @param  length amount of bytes to write
- * @param  slot   AD7792 slot
+ * @param  addr    register address to write to
+ * @param  data    data to write
+ * @param  length  amount of bytes to write
+ * @param  slot    AD7792 slot
  *
  * @return 1 if data matches, 0 else
  */
@@ -181,7 +182,7 @@ int AD7792_write_verify(unsigned char addr, unsigned short data,
  *
  * The AD needs time for conversions; busy wait until it is ready.
  *
- * @param  slot AD7792 slot
+ * @param  slot  AD7792 slot
  */
 void AD7792_waitReady(TempSlot slot);
 
@@ -190,7 +191,7 @@ void AD7792_waitReady(TempSlot slot);
  *
  * Read out model register and match.
  *
- * @param   slot AD7792 slot
+ * @param   slot  AD7792 slot
  *
  * @return  1 if AD7792 connected, 0 else
  */
@@ -199,14 +200,14 @@ int AD7792_isConnected(TempSlot slot);
 /**
  * Reset AD7792
  *
- * @param   slot AD7792 slot
+ * @param   slot  AD7792 slot
  */
 void AD7792_reset(TempSlot slot);
 
 /**
  * Init AD7792
  *
- * @param   slot AD7792 slot
+ * @param   slot  AD7792 slot
  *
  * @return  0 on success, positive int error code on error.
  */
