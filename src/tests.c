@@ -41,6 +41,8 @@ void program_uart_heater_test(void) {
   _sleep(100);
   api.setHeaterStatus(HEATER_OFF);
 
+  // shows temperatures and sets heater on and off
+  // and sends the temperatures to UART
   while (1) {
     api.setHeaterStatus(HEATER_ON);
     t1 = api.getTemperature(SLOT1);
