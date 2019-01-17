@@ -52,13 +52,27 @@ float scale_wordToFloat(char word[6]) {
   return roundf(result * 10) / 10;
 }
 
-uint8_t scale_isParity(char word[6]) {
-  int i;
+uint8_t scale_word_validate(char word[6]) {
+  // null byte
+  if (word[6] != '\0')
+    return 0;
+
+  // parity byte
   int res = hexToDec(word[0]);
-  for (i = 1; i < 4; i++) {
+  for (int i = 1; i < 4; ++i) {
     res ^= hexToDec(word[i]);
   }
-  return (res + 48 == word[4]);
+  if (!(res + 48 == word[4]))
+    return 0;
+
+  // digits
+  for (int i = 0; i < 4; ++i) {
+    if (word[i] < 48 || word[i] > 57)
+      return 0;
+  }
+
+  // word valid
+  return 1;
 }
 
 int scale_init(void) {
@@ -85,10 +99,11 @@ float scale_getWeight(void) {
       word[i] = receiveByte();
 
     // word is garbage, try again
-    while (!scale_isParity(word)) {
+    while (!scale_word_validate(word)) {
       retries += 1;
 
-      while (receiveByte() != 0x00) {
+      // try to find end of word
+      while (receiveByte() != '\0') {
       }
 
       if (retries > 4) {
