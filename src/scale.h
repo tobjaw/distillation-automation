@@ -21,7 +21,7 @@
 /* controls the weight of previous vs. current measurement
  * lower values cause a slower response
  */
-#define SCALE_LOWPASS_ALPHA 0.7
+#define SCALE_LOWPASS_ALPHA 0.9
 
 /**
  * Setup USART communication for scale peripheral
