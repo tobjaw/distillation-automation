@@ -196,10 +196,22 @@
     <Compile Include="src\distill.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\live.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\live.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\main.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\scale.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\scale.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\SPI.c">
