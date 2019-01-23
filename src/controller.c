@@ -36,8 +36,9 @@ float PI_controller(float ref_temp, float current_temp, float Kp, float Ki) {
 
 float setNewRefTemp(float currentRefTemp) { return currentRefTemp + 0.5; }
 
-HeaterStatus heater_switch(float value) {
-  float pwm_value = 0.0625 * pwmcounter;
+HeaterStatus heater_switch(float value) // value [0,1] , defines the heat power
+{
+  float pwm_value = 0.0625 * PWM_COUNTER;
   if (value > pwm_value) {
     return HEATER_ON;
   } else {

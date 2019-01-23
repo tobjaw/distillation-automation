@@ -16,8 +16,8 @@ void _stdout_setup();
 volatile long unsigned elapsedTime;
 void _clock_setup();
 
-int switched;
+int PWM_SWITCHED;
 void PWMGen();
-volatile float pwmcounter;
+volatile float PWM_COUNTER;
 
 #endif /* COMPAT_H */

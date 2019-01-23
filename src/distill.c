@@ -82,33 +82,33 @@ void program_distill(void) {
       switch (mode_change) {
       // heating control part (PID)
       case 0:
-        if (switched == HEATER_OFF) {
+        if (PWM_SWITCHED == HEATER_OFF) {
           switch_ON = heater_switch(PI_value);
           if (switch_ON == HEATER_ON) {
             api.setHeaterStatus(HEATER_ON);
           } else {
             api.setHeaterStatus(HEATER_OFF);
-            switched = 1;
+            PWM_SWITCHED = 1;
           }
         }
         break;
 
       // boiling control part
       case 1:
-        if (switched == HEATER_OFF) {
+        if (PWM_SWITCHED == HEATER_OFF) {
           switch_ON = heater_switch(1.0);
           if (switch_ON == HEATER_ON) {
             api.setHeaterStatus(HEATER_ON);
           } else {
             api.setHeaterStatus(HEATER_OFF);
-            switched = 1;
+            PWM_SWITCHED = 1;
           }
         }
         break;
       }
     }
-    _sleep(100);
-    outputLivePlotting(api, temperature1, temperature2, weight, PI_value);
-    _sleep(100);
+
+    _log("%.2f,%.2f,%.2f,%.2f,%.2f,%d", temperature1, temperature2, PWM_COUNTER,
+         PI_value, weight, switch_ON);
   }
 }
