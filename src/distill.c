@@ -13,17 +13,6 @@
 #include "controller.h"
 #include "distill.h"
 
-void outputLivePlotting(API api, float temp1, float temp2, float weight,
-                        float PI_value) {
-  SBStatus sbStatus;
-  HeaterStatus heaterStatus;
-
-  sbStatus = api.getSBreadyStatus();
-  heaterStatus = api.getHeaterStatus();
-
-  _log("%f,%f,%f,%d,%d,%f", temp1, temp2, weight, sbStatus, heaterStatus,
-       PI_value);
-}
 
 void program_distill(void) {
   API api;
@@ -31,7 +20,7 @@ void program_distill(void) {
   unsigned char status;
   int start = 0;
   float PI_value = 0.0;
-  int switch_ON = 0;
+  HeaterStatus switch_ON = HEATER_OFF;
   int initialcdn = 0;
   float roomtemperature = 0.0;
   int mode_change = 0;
@@ -91,11 +80,11 @@ void program_distill(void) {
                         0.018487, 4.1145 * pow(10, -6));
 
       switch (mode_change) {
-      // heanting control part (PID)
+      // heating control part (PID)
       case 0:
-        if (switched == 0) {
+        if (switched == HEATER_OFF) {
           switch_ON = heater_switch(PI_value);
-          if (switch_ON == 1) {
+          if (switch_ON == HEATER_ON) {
             api.setHeaterStatus(HEATER_ON);
           } else {
             api.setHeaterStatus(HEATER_OFF);
@@ -106,9 +95,9 @@ void program_distill(void) {
 
       // boiling control part
       case 1:
-        if (switched == 0) {
+        if (switched == HEATER_OFF) {
           switch_ON = heater_switch(1.0);
-          if (switch_ON == 1) {
+          if (switch_ON == HEATER_ON) {
             api.setHeaterStatus(HEATER_ON);
           } else {
             api.setHeaterStatus(HEATER_OFF);
