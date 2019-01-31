@@ -11,8 +11,8 @@ This time was necessary because while the system identification the initial stat
 
 Afterwards follows the heating phase with PI Controller. 
 To measure the real boiling temperature of wine the initial reference temperature is set as 92°C. A little bit lower than the value in the literature. 
-The controller increase the reference value by 0.5°C if the initial reference is reached. Then the controller waits 16 seconds and measures the head temperature. 
-If the current head temperature doesn't change with the initial head temperature controller increase the reference temperature by 0.5°C again.  
-Else controller change the phase from heating to boiling. PI Controller will switched with a physical model based controller (PMC). More information about the physical model based controller read (LINK).
+The controller increases the reference value by 0.5°C if the initial reference is reached. Then the controller waits 16 seconds and measures the head temperature. 
+If the current head temperature doesn't change with the initial head temperature controller increases the reference temperature by 0.5°C again.  
+Else controller changes the phase from heating to boiling. PI Controller will switched with a physical model based controller (PMC). More information about the physical model based controller read (LINK).
 Distillation process is finished if the head temperature is over 92°C. Heater will turned off and the system gets the end state.
 
