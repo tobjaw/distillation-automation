@@ -11,6 +11,7 @@
 #include "AD7792.h"
 
 unsigned char initPhysical();
+unsigned char tryInitPhysical();
 
 HeaterStatus getHeaterStatusPhysical();
 HeaterStatus setHeaterStatusPhysical(HeaterStatus power);

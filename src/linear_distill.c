@@ -44,22 +44,8 @@ void program_linear_distill(void) {
   api = newAPI();
   status = api.init();
 
-  if (status) {
-    switch (status) {
-    case ERROR_SPI_INIT:
-      _log("Error: Could not init SPI.");
-      break;
-    case ERROR_AD7792_SLOT1:
-      _log("Error: AD7792 on SLOT1.");
-      break;
-    case ERROR_AD7792_SLOT2:
-      _log("Error: AD7792 on SLOT2");
-      break;
-    default:
-      _log("Error.");
-    }
-    while (1) {
-    };
+  while (status) {
+    /* error: freeze */
   }
 
   /* Main Loop

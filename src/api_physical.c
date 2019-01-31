@@ -12,9 +12,33 @@
 #include "AD7792.h"
 #include "errors.h"
 #include "scale.h"
+#include "main.h"
 
 
 unsigned char initPhysical() {
+  unsigned char status = tryInitPhysical();
+
+  if (status) {
+    switch (status) {
+    case ERROR_SPI_INIT:
+      _log("Error: Could not init SPI.");
+      break;
+    case ERROR_AD7792_SLOT1:
+      _log("Error: AD7792 on SLOT1.");
+      break;
+    case ERROR_AD7792_SLOT2:
+      _log("Error: AD7792 on SLOT2");
+      break;
+    default:
+      _log("Error.");
+    }
+    return status;
+  }
+
+  return 0;
+}
+
+unsigned char tryInitPhysical() {
   setHeaterStatusPhysical(HEATER_OFF);
 
   if (SPI_init()) {

@@ -18,21 +18,10 @@ void PMC_Init(struct FSM_Machine *machine) {
   machine->data->api = newAPI();
   status = machine->data->api.init();
 
-  if (status) {
-    switch (status) {
-    case ERROR_SPI_INIT:
-      printf("Error: Could not init SPI.");
-      break;
-    case ERROR_AD7792_SLOT1:
-      printf("Error: AD7792 on SLOT1.");
-      break;
-    case ERROR_AD7792_SLOT2:
-      printf("Error: AD7792 on SLOT2");
-      break;
-    default:
-      printf("Error.");
-    }
+  if (status)
     machine->state = PMC_Fin;
+  while (status) {
+    /* error: freeze */
   }
 
   machine->data->timestamp = elapsedTime;

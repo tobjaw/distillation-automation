@@ -6,7 +6,6 @@
 
 #include <stdio.h>
 #include "main.h"
-#include "compat.h"
 #include "errors.h"
 #include "gui.h"
 #include "live.h"
