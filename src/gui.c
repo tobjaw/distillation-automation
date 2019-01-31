@@ -53,8 +53,6 @@ void gui_draw(menu_item items[], int menu_length, int selection,
   for (i = 0; i < menu_length; i++) {
     gui_draw_menu_item(items[i], selection == i, i);
   }
-
-  printf("\nAutorun in %04d...", timeout);
 }
 
 void program_execute(menu_item *menu, int selection) {

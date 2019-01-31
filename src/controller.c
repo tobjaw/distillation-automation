@@ -34,24 +34,7 @@ float PI_controller(float ref_temp, float current_temp, float Kp, float Ki) {
   return output;
 }
 
-int bangbang_ctr_init(float ref_temp, float hys, float current_temp) {
-  if (current_temp >= ref_temp + hys) {
-    return 1;
-  } else {
-    return 0;
-  }
-}
-
-
-float bangbang_ctr(float ref_temp, float hys, float current_temp) {
-  if (current_temp >= ref_temp + hys) {
-    return 0.0;
-  }
-  if (current_temp <= ref_temp - hys) {
-    return 1.0;
-  }
-  return 0.0;
-}
+float setNewRefTemp(float currentRefTemp) { return currentRefTemp + 0.5; }
 
 HeaterStatus heater_switch(float value) {
   float pwm_value = 0.0625 * pwmcounter;
