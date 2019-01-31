@@ -13,11 +13,11 @@ float physicalModel(float lastContrValue, float initialHeadTemp,
                     float boilingTemp, float headTemp_curr, float sumpTemp_curr,
                     float weight_curr) {
   float Qv; // enthalpy of vaporization of our solution [kJ/kg]
-  float Cp;
+  float Cp; // heating capacity of the mixture
   float Lv; // power for vaporization
 
-  float heatE; // heat energy to compasate the tempDiff
-  float totalE;
+  float heatE;        // heat energy to compasate the tempDiff
+  float totalE;       // total needed energy
   float totalL = 0.0; // total power to get the required outflow
 
   float alcConcentrationVine; // alc concentration of vine

@@ -1,3 +1,9 @@
+/**
+ * @file physical_model.h
+ * function to calculate the heating power to get the required outflow
+ *
+ */
+
 #ifndef PHYSICAL_MODEL_H_
 #define PHYSICAL_MODEL_H_
 
@@ -45,15 +51,15 @@ typedef enum {
   PMC_STATE_MAIN  /**< Body */
 } PMC_STATE;
 
-float headTemp[4]; // array to save the old value
-float sumpTemp_prev;
-float weight_prev;
-float flow_prev;
+float headTemp[4];   // array to save the old value
+float sumpTemp_prev; // previous sump temperature
+float weight_prev;   // previous weight
+float flow_prev;     // previous outflow
 
 long unsigned timestamp;
 PMC_STATE PMC_state;
 
-float deltaE[5];
+float deltaE[5]; // hold the old vlaue. For more information look at the bottom.
 float deltaE_curr; // additional energy to compensate the error whitch occurs by
                    // the no linearity of the system
 volatile float m_e_p; // mass ethanol in product [g]i
@@ -63,8 +69,21 @@ volatile float m_w_e; // mass water in educt [g]
 volatile float m_e;   // total mass of ethanol in educt [g]
 
 
-float L0;
+float L0; // base power of the heater
 
+/**
+ * Calculate the heating power by using the physical theorem
+ *
+ * @param lastContrValue  heater power if the temperature reached first time the
+ * boiling temperatur
+ * @param initialHeadTemp  initil head temperature
+ * @param boilingTemp  boiling temperature of wine
+ * @param headTemp_curr  current head temperature
+ * @paran sumpTemp_curr current sump temperature
+ * @param weight_curr  current weight
+ *
+ * @return heater power
+ */
 float physicalModel(float lastContrValue, float initialHeadTemp,
                     float boilingTemp, float headTemp_curr, float sumpTemp_curr,
                     float weight_curr);

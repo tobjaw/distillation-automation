@@ -1,3 +1,13 @@
+/**
+ * @file physical_model_controller.h
+ *
+ * This part include the finite state machine (FSM).
+ * The state and the data for computation is hold in a struct.
+ * For more information about FSM, please look the documentation
+ *
+ */
+
+
 #ifndef PHYSICAL_MODEL_CONTROLLER_H
 #define PHYSICAL_MODEL_CONTROLLER_H
 
