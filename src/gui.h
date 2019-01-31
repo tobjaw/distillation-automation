@@ -3,7 +3,8 @@
  *
  * Interactive menu system
  *
- * Allows to choose different programs interactively using a host computer.
+ * Allows to choose different programs interactively using a serial console on
+ * the host computer.
  */
 
 #ifndef GUI_H
@@ -54,22 +55,66 @@
  * A single menu item as used in the GUI.
  */
 typedef struct {
-  char title[60];
-  void (*exec)();
+  char title[60]; /**< title shown in main menu. */
+  void (*exec)(); /**< program callback, to be excuted on selection. */
 } menu_item;
 
+/**
+ * Clear the screen.
+ */
 void screen_clear(void);
+
+/**
+ * Reset cursor to top left corner.
+ */
 void screen_reset(void);
 
+/**
+ * Hide cursor.
+ */
 void cursor_hide(void);
+
+/**
+ * Show cursor.
+ */
 void cursor_show(void);
 
+/**
+ * Draw a single menu item.
+ *
+ * @param item menu item to draw
+ * @param selected whether to draw menu item as selected or not
+ * @param menu_item_index index of menu item
+ */
 void gui_draw_menu_item(menu_item item, int selected, int menu_item_index);
+
+/**
+ * Draw the GUI.
+ *
+ * @param items menu items to draw
+ * @param menu_length number of menu items
+ * @param selection index of current selection
+ * @param timeout amount of time in ms after which the current selection should
+ * be auto-executed
+ */
 void gui_draw(menu_item items[], int menu_length, int selection,
               unsigned int timeout);
 
+/**
+ * Execute a program.
+ *
+ * @param menu array of menu items
+ * @param selection index of menu item to execute
+ */
 void program_execute(menu_item *menu, int selection);
 
+/**
+ * GUI main loop.
+ *
+ * @param menu array of menu items
+ * @param menu_length number of menu items
+ * @param selection index of current selection
+ */
 void GUI(menu_item menu[], int menu_length, int selection);
 
 #endif /* GUI_H */

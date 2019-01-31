@@ -1,7 +1,7 @@
 /**
  * @file api_physical.c
  *
- * Physical implementation of the API
+ * Physical implementation of the API.
  */
 
 #ifdef __AVR__

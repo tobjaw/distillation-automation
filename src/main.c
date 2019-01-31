@@ -22,7 +22,6 @@ void program_info(void) {
   _sleep(10000);
 }
 
-
 int main() {
 
   _clock_setup();

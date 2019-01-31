@@ -10,7 +10,13 @@
 /**
  * Possible states during the linear distillation.
  */
-typedef enum { WAIT, PI_HEATING, P_START, DISTILL, END } linDistModes;
+typedef enum {
+  WAIT,       /**< Wait for 60s. */
+  PI_HEATING, /**< Heating */
+  P_START,    /**< Wait for first outflow */
+  DISTILL,    /**< Main distillation */
+  END         /**< Finish */
+} linDistModes;
 
 /**
  * Program for linear distillation.

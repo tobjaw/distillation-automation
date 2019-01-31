@@ -7,6 +7,9 @@
 #ifndef LIVE_H
 #define LIVE_H
 
+/**
+ * Live Monitoring of connected peripherals
+ */
 void program_live(void);
 
 #endif

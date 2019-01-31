@@ -1,7 +1,7 @@
 /**
  * @file live.c
  *
- * Live Monitoring of connected peripherals
+ * Live Monitoring of connected peripherals.
  */
 
 #include <stdio.h>
