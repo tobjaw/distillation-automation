@@ -11,7 +11,6 @@
 #include "gui.h"
 #include "live.h"
 #include "tests.h"
-#include "distill.h"
 #include "linear_distill.h"
 #include "physical_model_controller.h"
 

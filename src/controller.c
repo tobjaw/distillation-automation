@@ -6,7 +6,6 @@
 
 #include "controller.h"
 #include "compat.h"
-#include "distill.h"
 #include "api.h"
 #include "main.h"
 #include <math.h>
