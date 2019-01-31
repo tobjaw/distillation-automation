@@ -79,11 +79,11 @@ void PWMGen() {
 }
 
 #ifdef __AVR__
-ISR(TIMER4_COMPA_vect) { // pwmcounter = 1;
-  pwmcounter += 0.1;
-  if (pwmcounter >= 16) {
-    pwmcounter = 0;
-    switched = 0;
+ISR(TIMER4_COMPA_vect) { // PWM_COUNTER = 1;
+  PWM_COUNTER += 0.1;
+  if (PWM_COUNTER >= 16) {
+    PWM_COUNTER = 0;
+    PWM_SWITCHED = 0;
   }
 }
 #endif //__AVR__

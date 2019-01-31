@@ -143,13 +143,13 @@ void program_linear_distill(void) {
     }
 
 
-    if (switched == 0) {
+    if (PWM_SWITCHED == 0) {
       switchOn = heater_switch(heatingPower);
       if (switchOn == HEATER_ON) {
         realHS = api.setHeaterStatus(HEATER_ON);
       } else {
         realHS = api.setHeaterStatus(HEATER_OFF);
-        switched = 1;
+        PWM_SWITCHED = 1;
       }
       if (realHS != switchOn && LOG_LEVEL >= LOG_LEVEL_INFO) {
         _log("Warning: Heater could not be set!");

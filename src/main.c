@@ -13,6 +13,7 @@
 #include "tests.h"
 #include "distill.h"
 #include "linear_distill.h"
+#include "physical_model_controller.h"
 
 
 void program_info(void) {
@@ -32,8 +33,8 @@ int main() {
       {.title = "Info", .exec = program_info},
       {.title = "Live Monitoring", .exec = program_live},
       {.title = "UART-HEATER Test", .exec = program_uart_heater_test},
-      {.title = "Distillation", .exec = program_distill},
-      {.title = "Linear distillation", .exec = program_linear_distill}};
+      {.title = "Distill (Linear)", .exec = program_linear_distill},
+      {.title = "Distill (Physical)", .exec = program_distill_physical}};
 
   GUI(menu, 5, 0);
 
