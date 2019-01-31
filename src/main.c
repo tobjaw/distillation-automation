@@ -6,12 +6,10 @@
 
 #include <stdio.h>
 #include "main.h"
-#include "compat.h"
 #include "errors.h"
 #include "gui.h"
 #include "live.h"
 #include "tests.h"
-#include "distill.h"
 #include "linear_distill.h"
 #include "physical_model_controller.h"
 
@@ -23,7 +21,6 @@ void program_info(void) {
   _sleep(10000);
 }
 
-
 int main() {
 
   _clock_setup();
@@ -33,10 +30,11 @@ int main() {
       {.title = "Info", .exec = program_info},
       {.title = "Live Monitoring", .exec = program_live},
       {.title = "UART-HEATER Test", .exec = program_uart_heater_test},
+      {.title = "Scale Test", .exec = program_scale_test},
       {.title = "Distill (Linear)", .exec = program_linear_distill},
       {.title = "Distill (Physical)", .exec = program_distill_physical}};
 
-  GUI(menu, 5, 0);
+  GUI(menu, 6, 3);
 
   return 0;
 }

@@ -54,7 +54,7 @@ float scale_wordToFloat(char word[6]) {
 
 uint8_t scale_word_validate(char word[6]) {
   // null byte
-  if (word[6] != '\0')
+  if (word[5] != '\0')
     return 0;
 
   // parity byte
@@ -81,6 +81,9 @@ int scale_init(void) {
 
   transmitByte(0xFF);
   _sleep(3000);
+
+  while (receiveByte() != '\0') {
+  }
 
   return 0;
 }

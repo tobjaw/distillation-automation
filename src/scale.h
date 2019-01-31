@@ -21,7 +21,7 @@
 /* controls the weight of previous vs. current measurement
  * lower values cause a slower response
  */
-#define SCALE_LOWPASS_ALPHA 0.9
+#define SCALE_LOWPASS_ALPHA 0.95
 
 /**
  * Setup USART communication for scale peripheral
@@ -59,5 +59,29 @@ uint8_t receiveByte(void);
  * @return  weight in g
  */
 float scale_getWeight(void);
+
+/**
+ * Convert hexadecimal char into decimal int.
+ *
+ * @param  hex hex value
+ * @return decimal value
+ */
+int hexToDec(char hex);
+
+/**
+ * Convert scale word to float value.
+ *
+ * @param  word scale word
+ * @return float value
+ */
+float scale_wordToFloat(char *word);
+
+/**
+ * Validate scale word.
+ *
+ * @param  word scale word
+ * @return 1 if valid, 0 if invalid
+ */
+uint8_t scale_word_validate(char *word);
 
 #endif /* SCALE_H */

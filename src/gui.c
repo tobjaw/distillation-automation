@@ -4,6 +4,10 @@
  * Interactive menu system
  *
  * Allows to choose different programs interactively using a host computer.
+ * Shows a list of menu items, which can be selected with Tab, the arrow keys or
+ * inputting the respective numbers directly.
+ * The current selection can be executed with Enter or Space, or by waiting
+ * until the timeout automatically executes the current selection.
  */
 
 #include <stdio.h>
@@ -23,13 +27,11 @@ void cursor_hide(void) { printf("\x1B[?25l"); }
 void cursor_show(void) { printf("\x1B[?25h"); }
 
 void screen_reset(void) {
-  // reset cursor to top left corner
   static char chars[] = {KEY_ESCAPE, KEY_BRACKET_SQUARE_OPEN, 'H'};
   putchars(chars);
 }
 
 void screen_clear(void) {
-  // clear screen
   static char chars[] = {KEY_ESCAPE, KEY_BRACKET_SQUARE_OPEN, '2', 'J'};
   putchars(chars);
 }
