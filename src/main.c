@@ -31,10 +31,11 @@ int main() {
       {.title = "Info", .exec = program_info},
       {.title = "Live Monitoring", .exec = program_live},
       {.title = "UART-HEATER Test", .exec = program_uart_heater_test},
+      {.title = "Scale Test", .exec = program_scale_test},
       {.title = "Distill (Linear)", .exec = program_linear_distill},
       {.title = "Distill (Physical)", .exec = program_distill_physical}};
 
-  GUI(menu, 5, 0);
+  GUI(menu, 6, 3);
 
   return 0;
 }
