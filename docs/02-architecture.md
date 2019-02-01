@@ -44,12 +44,12 @@ Each program launched is given exclusive access to the hardware until it finishe
 As a bonus, splitting up subroutines into multiple source files has allowed us to work on different programs at once, without the risk of merge conflicts.
 
 Currently, the following subprograms are available:
-- [Info](@ref program_info)
-- [Live Monitoring](@ref program_live)
-- [Scale Test](@ref program_scale_test)
-- [Heater Test](@ref program_uart_heater_test)
-- [Distill (Linear)](@ref program_linear_distill)
-- [Distill (Physical)](@ref program_distill_physical)
+- [Info](@ref program_info): Print basic usage information.
+- [Live Monitoring](@ref program_live) - Constantly read all connected peripherals and allow user to toggle heater manually.
+- [Scale Test](@ref program_scale_test) - Test scale
+- [Heater Test](@ref program_uart_heater_test) - Test heater
+- [Distill (Linear)](@ref program_linear_distill) - Automatic distillation, using the linear controller
+- [Distill (Physical)](@ref program_distill_physical) - Automatic distillation, using the physically modeled controller
 
 ## API
 

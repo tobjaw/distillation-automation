@@ -12,6 +12,11 @@
  * @todo fix temperature drop when heater is powered on
  */
 
+/**
+ * @defgroup AD7792_REGISTERS Registers related to AD7792 config
+ *
+ * @{
+ */
 #define AD7792_RDY PB3
 #define AD7792_RDY_PORT PORTB
 #define AD7792_RDY_PIN PINB
@@ -122,20 +127,21 @@
 #define AD7792_MODE_FILTER_15 15
 
 #define AD7792_STATUS_RDY (1 << 7)
+/** @} */
 
 #include "api.h"
 
 /**
  * Select a specific SPI slave
  *
- * @param  slot  AD7729 controller slot
+ * @param  slot  AD7792 controller slot
  */
 void selectSlave(TempSlot slot);
 
 /**
  * Deselect a specific SPI slave
  *
- * @param  slot  AD7729 controller slot
+ * @param  slot  AD7792 controller slot
  */
 void deselectSlave(TempSlot slot);
 

@@ -1,7 +1,4 @@
 # Hardware
-## Motherboard
-TODO: write general stuff here
-
 ## Peripherals
 ### Serial Host Connection
 With the ATMega2560 supporting USART at hardware level, we settled on using the serial connection for in- and output.
@@ -26,6 +23,3 @@ Note that we cannot rely on parity alone to verify the word - additionally, we h
 ### Heater
 The implementation of the heater is the most simple peripheral in the sense that it only requires [reading](@ref getHeaterStatusPhysical) and [setting](@ref setHeaterStatusPhysical) a single bit.  
 However, there is some additional error checking by consulting the status of the attached security board, which blocks the heater, if not all security conditions are met.
-
-### Security Board
-TODO: list what security conditions have to be met

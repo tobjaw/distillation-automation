@@ -20,6 +20,11 @@
 
 #define GUI_TIMEOUT 5000
 
+/**
+ * @defgroup KEY_CODES Key Codes used for input handling
+ *
+ * @{
+ */
 #define KEY_TAB 9
 #define KEY_ENTER 13
 #define KEY_ESCAPE 27
@@ -35,7 +40,13 @@
 #define KEY_SEVEN 55
 #define KEY_EIGHT 56
 #define KEY_NINE 57
+/** @} */
 
+/**
+ * @defgroup COLOR_ESCAPES Color codes used for beautiful console output
+ *
+ * @{
+ */
 #define COLOR_NORMAL "\x1B[0m"
 
 #define COLOR_FG_BLACK "\x1B[30m"
@@ -50,6 +61,7 @@
 #define COLOR_BG_RED "\x1B[41m"
 #define COLOR_BG_YELLOW "\x1B[43m"
 #define COLOR_BG_WHITE "\x1B[47m"
+/** @} */
 
 /**
  * A single menu item as used in the GUI.
