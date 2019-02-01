@@ -7,6 +7,12 @@
 #ifndef PHYSICAL_MODEL_H_
 #define PHYSICAL_MODEL_H_
 
+/**
+ * @defgroup PM_CONSTANTS Constants for operation of the physical model
+ * controller.
+ *
+ * @{
+ */
 #define QV_W 2256  /**< enthalpy of vaporization water at 100°C [kJ/kg] */
 #define QV_E 845   /**< enthalpy of vaporization ethanol at 78°C [kJ/kg] */
 #define CP_W 4.217 /**< heating capacity water at 100°C [kJ/(kg*K)] */
@@ -42,6 +48,7 @@
 
 #define HEAD_B_CONDENSE_TEMP 92
 #define HEAD_B_ALCOHOL_VOL_PERCENTAGE 50
+/** @} */
 
 /**
  * State of the Physical Model Controller.
