@@ -10,6 +10,7 @@
 #include "live.h"
 #include "tests.h"
 #include "distill.h"
+#include "linear_distill.h"
 
 
 void program_info(void) {
@@ -29,7 +30,7 @@ int main() {
       {.title = "Info", .exec = program_info},
       {.title = "Live Monitoring", .exec = program_live},
       {.title = "UART-HEATER Test", .exec = program_uart_heater_test},
-      {.title = "Live Reporting", .exec = program_distill},
+      {.title = "Linear Distill", .exec = program_linear_distill},
 	  {.title = "Stepper Test", .exec = program_stepper}};
 
   GUI(menu, 5, 4);

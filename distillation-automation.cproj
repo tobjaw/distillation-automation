@@ -196,6 +196,12 @@
     <Compile Include="src\distill.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\linear_distill.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\linear_distill.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\live.c">
       <SubType>compile</SubType>
     </Compile>
