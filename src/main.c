@@ -34,7 +34,7 @@ int main() {
       {.title = "Distill (Linear)", .exec = program_linear_distill},
       {.title = "Distill (Physical)", .exec = program_distill_physical}};
 
-  GUI(menu, 6, 3);
+  GUI(menu, 6, 1);
 
   return 0;
 }

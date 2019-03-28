@@ -31,6 +31,7 @@
 #define KEY_SPACE 32
 #define KEY_BRACKET_SQUARE_OPEN 91
 
+#define KEY_ZERO 48
 #define KEY_ONE 49
 #define KEY_TWO 50
 #define KEY_THREE 51
@@ -40,6 +41,9 @@
 #define KEY_SEVEN 55
 #define KEY_EIGHT 56
 #define KEY_NINE 57
+
+#define KEY_PLUS 43
+#define KEY_MINUS 45
 /** @} */
 
 /**
